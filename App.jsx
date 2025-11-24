@@ -19,6 +19,7 @@ import {
 } from "@material-symbols-react-native/outlined-400";
 import { MsIcon } from "material-symbols-react-native";
 import TestScreen from "./screens/TestScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 export default function App() {
   const [index, setIndex] = React.useState(2);
@@ -73,7 +74,7 @@ export default function App() {
   const renderScene = BottomNavigation.SceneMap({
     training: TestScreen,
     progress: TestScreen,
-    home: TestScreen,
+    home: HomeScreen,
     measures: TestScreen,
     profile: TestScreen,
   });
@@ -85,10 +86,10 @@ export default function App() {
         onIndexChange={setIndex}
         renderScene={renderScene}
         shifting={false}
-        barStyle={{ backgroundColor: Colors[700] }}
+        barStyle={{ backgroundColor: Colors.Orange[700] }}
         activeColor="white"
         inactiveColor="white"
-        activeIndicatorStyle={{ backgroundColor: Colors[600] }}
+        activeIndicatorStyle={{ backgroundColor: Colors.Orange[600] }}
       />
     </PaperProvider>
   );

@@ -9,7 +9,7 @@ export default function TestScreen() {
     <View
       style={{
         flex: 1,
-        backgroundColor: Colors[700],
+        backgroundColor: Colors.Orange[700],
       }}
     >
       <View
