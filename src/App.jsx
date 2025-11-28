@@ -1,9 +1,9 @@
-import * as React from "react";
+import { useState } from "react";
 import {
   BottomNavigation,
   Provider as PaperProvider,
 } from "react-native-paper";
-import Colors from "./constants/colors";
+import Colors from "@shared/constants/Colors";
 
 import {
   msAccountCircle,
@@ -18,13 +18,13 @@ import {
   msTodayFill,
 } from "@material-symbols-react-native/outlined-400";
 import { MsIcon } from "material-symbols-react-native";
-import TestScreen from "./screens/TestScreen";
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen from "./features/home/screens/HomeScreen";
+import TestScreen from "./shared/screens/TestScreen";
 
 export default function App() {
-  const [index, setIndex] = React.useState(2);
+  const [index, setIndex] = useState(2);
 
-  const [routes] = React.useState([
+  const [routes] = useState([
     {
       key: "training",
       title: "Treino",

@@ -24,7 +24,7 @@ const Colors = {
   },
   Tag: {
     moderado: "#FFD187",
-    vigoroso: "#FFE2E2",
+    rigoroso: "#FFE2E2",
     leve: "#D1FAE4",
   },
 };
