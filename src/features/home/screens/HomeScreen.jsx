@@ -7,20 +7,25 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Calendar from "../components/Calendar";
 import TodayExercise from "../components/TodayExercise";
 import Exercise from "../components/Exercise";
+import WeekInfo from "@models/weekInfo.model";
+import History from "@models/history.model";
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
 
   // Dados temporários
-  const weekInfo = {
-    month: "Novembro",
-    year: 2025,
-    daysCompleted: 11,
-    totalDays: 12,
-    streakCount: 365,
-    streak: [false, false, true, true, false, true, true],
-  };
-  const history = [
+  const weekInfo = new WeekInfo("Novembro", 2025, 11, 12, 365, [
+    false,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true,
+  ]);
+
+  const history = new History();
+  history.addEntries([
     {
       tipo: "Superiores",
       data: "27 de agosto de 2025",
@@ -45,7 +50,7 @@ export default function HomeScreen() {
       label: "Médio",
       tag: "moderado",
     },
-  ];
+  ]);
 
   return (
     <View
@@ -79,7 +84,7 @@ export default function HomeScreen() {
         <Text variant="titleLarge" style={styles.sectionTitle}>
           Histórico de Treinos
         </Text>
-        {history.map((item, i) => (
+        {history.list.map((item, i) => (
           <Exercise key={i} item={item}></Exercise>
         ))}
 
