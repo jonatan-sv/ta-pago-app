@@ -1,7 +1,7 @@
 import { msModeHeatFill } from "@material-symbols-react-native/outlined-400";
 import { MsIcon } from "material-symbols-react-native";
 import { Text, View } from "react-native";
-import Colors from "@shared/constants/Colors";
+import Colors from "@consts/Colors";
 
 export default function StreakTag({ label }) {
   return (

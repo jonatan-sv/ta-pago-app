@@ -3,7 +3,7 @@ import {
   BottomNavigation,
   Provider as PaperProvider,
 } from "react-native-paper";
-import Colors from "@shared/constants/Colors";
+import Colors from "@consts/Colors";
 
 import {
   msAccountCircle,

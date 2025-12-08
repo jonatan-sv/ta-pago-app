@@ -2,7 +2,7 @@ import {
   msCalendarToday,
   msExercise,
 } from "@material-symbols-react-native/outlined-400";
-import Colors from "@shared/constants/Colors";
+import Colors from "@consts/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { MsIcon } from "material-symbols-react-native";
 import { StyleSheet, View } from "react-native";

@@ -7,7 +7,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { MsIcon } from "material-symbols-react-native";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
-import Colors from "@shared/constants/Colors";
+import Colors from "@consts/Colors";
 import Tag from "./StreakTag";
 
 export default function Calendar({ weekInfo }) {

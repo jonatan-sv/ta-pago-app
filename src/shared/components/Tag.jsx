@@ -1,4 +1,4 @@
-import Colors from "@shared/constants/Colors";
+import Colors from "@consts/Colors";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 

@@ -1,5 +1,5 @@
 import Tag from "@shared/components/Tag";
-import Colors from "@shared/constants/Colors";
+import Colors from "@consts/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";

@@ -18,6 +18,7 @@ module.exports = function (api) {
           ],
           alias: {
             "@shared": "./src/shared",
+            "@consts": "./src/shared/constants",
             "@assets": "./src/assets",
             "@models": "./src/models",
           },

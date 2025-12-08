@@ -1,5 +1,5 @@
 import { msAlarmFill } from "@material-symbols-react-native/outlined-400";
-import Colors from "@shared/constants/Colors";
+import Colors from "@consts/Colors";
 import { MsIcon } from "material-symbols-react-native";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { FAB, Text } from "react-native-paper";
