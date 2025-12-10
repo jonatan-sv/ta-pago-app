@@ -4,8 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 
-// TODO: Tirar o texto hardcoded e receber via props
-export default function TodayTraining() {
+export default function Training({ item }) {
   return (
     <Card style={styles.todayCard} mode="contained">
       <View style={styles.todayHeader}>
@@ -23,7 +22,7 @@ export default function TodayTraining() {
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
           >
-            <Text style={{ color: "white" }}>A</Text>
+            <Text style={{ color: "white" }}>{item.id}</Text>
           </LinearGradient>
         </View>
         <View
@@ -35,18 +34,16 @@ export default function TodayTraining() {
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
-            <Text variant="titleLarge">Superiores</Text>
-            <Tag type="moderado" label="Moderado" />
+            <Text variant="titleLarge">{item.tipo}</Text>
+            <Tag type={item.intensity.toLowerCase()} label={item.intensity} />
           </View>
+          {/* TODO: Arrumar o estilo */}
           <View style={styles.exerciseList}>
-            <View style={{ flexDirection: "row", gap: 12 }}>
-              <Text>▸ Abdômen</Text>
-              <Text>▸ Antebraço</Text>
-            </View>
-            <View style={{ flexDirection: "row", gap: 12 }}>
-              <Text>▸ Bíceps</Text>
-              <Text>▸ Costa</Text>
-            </View>
+            {item.muscles.map((muscle, i) => (
+              <Text key={i} variant="bodyMedium">
+                ▸ {muscle}
+              </Text>
+            ))}
           </View>
         </View>
       </View>

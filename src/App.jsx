@@ -20,6 +20,7 @@ import {
 import { MsIcon } from "material-symbols-react-native";
 import HomeScreen from "./features/home/screens/HomeScreen";
 import TestScreen from "./shared/screens/TestScreen";
+import TrainingSelectScreen from "./features/training/screens/TrainingSelectScreen";
 
 export default function App() {
   const [index, setIndex] = useState(2);
@@ -72,7 +73,7 @@ export default function App() {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    training: TestScreen,
+    training: TrainingSelectScreen,
     progress: TestScreen,
     home: HomeScreen,
     measures: TestScreen,
