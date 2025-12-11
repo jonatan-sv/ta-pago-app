@@ -72,13 +72,27 @@ export default function App() {
     },
   ]);
 
-  const renderScene = BottomNavigation.SceneMap({
-    training: TrainingSelectScreen,
-    progress: TestScreen,
-    home: HomeScreen,
-    measures: TestScreen,
-    profile: TestScreen,
-  });
+  const renderScene = ({ route }) => {
+    switch (route.key) {
+      case "training":
+        return <TrainingSelectScreen setIndex={setIndex} />;
+
+      case "progress":
+        return <TestScreen />;
+
+      case "home":
+        return <HomeScreen setIndex={setIndex} />;
+
+      case "measures":
+        return <TestScreen />;
+
+      case "profile":
+        return <TestScreen />;
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <PaperProvider>

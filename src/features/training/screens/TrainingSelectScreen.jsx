@@ -1,11 +1,10 @@
 import Colors from "@consts/Colors";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Button } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Training from "../components/Training";
 import WeekProgress from "../components/WeekProgress";
 
-export default function TrainingSelectScreen() {
+export default function TrainingSelectScreen({ setIndex }) {
   const insets = useSafeAreaInsets();
 
   const treinos = [
@@ -60,17 +59,25 @@ export default function TrainingSelectScreen() {
           backgroundColor: Colors.Orange[100],
         }}
       >
+        {/*
         <View
           style={{
             flex: 1,
             flexDirection: "row",
             justifyContent: "flex-start",
+            alignItems: "center",
           }}
         >
-          <Button icon="arrow-left" onPress={() => console.log("Pressed")}>
-            Selecione seu Treino
-          </Button>
+          <CircularButton
+            icon={msArrowBack}
+            backgroundColor={"transparent"}
+            style={{ marginLeft: -12 }}
+            onPress={() => setIndex(2)}
+          ></CircularButton>
+          <Text variant="titleLarge">Selecione seu treino</Text>
         </View>
+        */}
+
         <WeekProgress></WeekProgress>
         {treinos.map((treino) => (
           <Training key={treino.id} item={treino} />

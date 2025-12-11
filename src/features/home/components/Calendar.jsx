@@ -8,7 +8,7 @@ import { MsIcon } from "material-symbols-react-native";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 import Colors from "@consts/Colors";
-import Tag from "./StreakTag";
+import Tag from "@shared/components/StreakTag";
 
 export default function Calendar({ weekInfo }) {
   return (
@@ -23,7 +23,7 @@ export default function Calendar({ weekInfo }) {
           <Text variant="titleMedium">
             {weekInfo.month} - {weekInfo.year}
           </Text>
-          <Tag label={weekInfo.streakCount}></Tag>
+          <Tag label={weekInfo.streakCount} side="left"></Tag>
         </View>
 
         <View style={styles.weekRow}>

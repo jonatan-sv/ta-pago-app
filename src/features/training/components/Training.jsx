@@ -37,13 +37,17 @@ export default function Training({ item }) {
             <Text variant="titleLarge">{item.tipo}</Text>
             <Tag type={item.intensity.toLowerCase()} label={item.intensity} />
           </View>
-          {/* TODO: Arrumar o estilo */}
           <View style={styles.exerciseList}>
-            {item.muscles.map((muscle, i) => (
-              <Text key={i} variant="bodyMedium">
-                ▸ {muscle}
-              </Text>
-            ))}
+            <View style={styles.exerciseList}>
+              <View style={{ flexDirection: "row", gap: 12 }}>
+                <Text>▸ {item.muscles[0]}</Text>
+                <Text>▸ {item.muscles[1]}</Text>
+              </View>
+              <View style={{ flexDirection: "row", gap: 12 }}>
+                <Text>▸ {item.muscles[2]}</Text>
+                <Text>{item.muscles[3] && `▸ ${item.muscles[3]}`}</Text>
+              </View>
+            </View>
           </View>
         </View>
       </View>

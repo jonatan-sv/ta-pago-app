@@ -10,7 +10,7 @@ import Exercise from "../components/Exercise";
 import WeekInfo from "@models/weekInfo.model";
 import History from "@models/history.model";
 
-export default function HomeScreen() {
+export default function HomeScreen({ setIndex }) {
   const insets = useSafeAreaInsets();
 
   // Dados temporários
@@ -99,7 +99,7 @@ export default function HomeScreen() {
           color="white"
           icon={() => <MsIcon icon={msAlarmFill} color="white" size={24} />}
           label="Treinar"
-          onPress={() => console.log("Pressed")}
+          onPress={() => setIndex(0)}
         ></FAB>
       </View>
     </View>
