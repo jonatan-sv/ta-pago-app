@@ -1,10 +1,9 @@
+import Colors from "@consts/Colors";
 import { useState } from "react";
 import {
   BottomNavigation,
   Provider as PaperProvider,
 } from "react-native-paper";
-import Colors from "@consts/Colors";
-
 import {
   msAccountCircle,
   msAccountCircleFill,
@@ -19,8 +18,9 @@ import {
 } from "@material-symbols-react-native/outlined-400";
 import { MsIcon } from "material-symbols-react-native";
 import HomeScreen from "./features/home/screens/HomeScreen";
-import TestScreen from "./shared/screens/TestScreen";
+import TrainingProgress from "./features/progress/screens/TrainingProgress";
 import TrainingSelectScreen from "./features/training/screens/TrainingSelectScreen";
+import TestScreen from "./shared/screens/TestScreen";
 
 export default function App() {
   const [index, setIndex] = useState(2);
@@ -84,7 +84,7 @@ export default function App() {
         return <HomeScreen setIndex={setIndex} />;
 
       case "measures":
-        return <TestScreen />;
+        return <TrainingProgress />; // Botei aqui para facilitar o acesso
 
       case "profile":
         return <TestScreen />;
