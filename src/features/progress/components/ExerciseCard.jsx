@@ -67,6 +67,8 @@ export default function ExerciseCard({ title, muscle }) {
               cursorColor={Colors.Orange[800]}
               activeOutlineColor={Colors.Orange[800]}
               outlineStyle={{ borderRadius: 4, borderWidth: 0.5 }}
+              keyboardType="numeric"
+              onChangeText={(text) => setValue(text.replace(/[^0-9]/g, ""))}
             />
 
             <Checkbox
