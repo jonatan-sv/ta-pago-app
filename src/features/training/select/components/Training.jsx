@@ -4,9 +4,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 
-export default function Training({ item }) {
+export default function Training({ item, setIndex }) {
   return (
-    <Card style={styles.todayCard} mode="contained">
+    <Card style={styles.todayCard} mode="contained" onPress={() => setIndex(3)}>
       <View style={styles.todayHeader}>
         <View style={styles.avatar}>
           <LinearGradient

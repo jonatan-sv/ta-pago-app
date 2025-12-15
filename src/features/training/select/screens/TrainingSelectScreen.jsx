@@ -80,7 +80,7 @@ export default function TrainingSelectScreen({ setIndex }) {
 
         <WeekProgress></WeekProgress>
         {treinos.map((treino) => (
-          <Training key={treino.id} item={treino} />
+          <Training key={treino.id} item={treino} setIndex={setIndex} />
         ))}
 
         {/* Espaço Vazio no final da lista */}

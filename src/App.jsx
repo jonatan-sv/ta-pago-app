@@ -18,8 +18,8 @@ import {
 } from "@material-symbols-react-native/outlined-400";
 import { MsIcon } from "material-symbols-react-native";
 import HomeScreen from "./features/home/screens/HomeScreen";
-import TrainingProgress from "./features/progress/screens/TrainingProgress";
-import TrainingSelectScreen from "./features/training/screens/TrainingSelectScreen";
+import TrainingProgress from "./features/training/progress/screens/TrainingProgress";
+import TrainingSelectScreen from "./features/training/select/screens/TrainingSelectScreen";
 import TestScreen from "./shared/screens/TestScreen";
 
 export default function App() {
@@ -105,6 +105,7 @@ export default function App() {
         activeColor="white"
         inactiveColor="white"
         activeIndicatorStyle={{ backgroundColor: Colors.Orange[600] }}
+        getLazy={() => false}
       />
     </PaperProvider>
   );
