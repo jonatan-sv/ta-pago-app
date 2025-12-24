@@ -21,6 +21,7 @@ import HomeScreen from "./features/home/screens/HomeScreen";
 import TrainingProgress from "./features/training/progress/screens/TrainingProgress";
 import TrainingSelectScreen from "./features/training/select/screens/TrainingSelectScreen";
 import TestScreen from "./shared/screens/TestScreen";
+import RatingScreen from "./features/training/rating/screens/RatingScreen.jsx";
 
 export default function App() {
   const [index, setIndex] = useState(2);
@@ -87,7 +88,7 @@ export default function App() {
         return <TrainingProgress />; // Botei aqui para facilitar o acesso
 
       case "profile":
-        return <TestScreen />;
+        return <RatingScreen />;
 
       default:
         return null;
