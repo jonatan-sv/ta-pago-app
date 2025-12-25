@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Training from "../components/Training";
 import WeekProgress from "../components/WeekProgress";
 
-export default function TrainingSelectScreen({ setIndex }) {
+export default function TrainingSelectScreen() {
   const insets = useSafeAreaInsets();
 
   const treinos = [
@@ -80,7 +80,7 @@ export default function TrainingSelectScreen({ setIndex }) {
 
         <WeekProgress></WeekProgress>
         {treinos.map((treino) => (
-          <Training key={treino.id} item={treino} setIndex={setIndex} />
+          <Training key={treino.id} item={treino} />
         ))}
 
         {/* Espaço Vazio no final da lista */}

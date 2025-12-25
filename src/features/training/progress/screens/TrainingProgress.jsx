@@ -1,11 +1,16 @@
 import Colors from "@consts/Colors";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Button, Text, IconButton } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ExerciseCard from "../components/ExerciseCard";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 export default function TreinoEmAndamento() {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { id } = route.params || {};
+
   return (
     <View
       style={{
@@ -27,16 +32,23 @@ export default function TreinoEmAndamento() {
         contentContainerStyle={{ paddingBottom: 30 }}
       >
         {/* Header
-            TODO: Adicionar a seta de voltar
+            TODO: Arrumar o estilo
         */}
         <View style={styles.header}>
-          <Text variant="titleLarge" style={styles.title}>
-            Treino em andamento
-          </Text>
-          <Text style={styles.subtitle}>0 de 5 concluídos</Text>
+          <IconButton
+            icon="arrow-left"
+            size={24}
+            onPress={() => navigation.goBack()}
+          />
+          <View>
+            <Text variant="titleLarge" style={styles.title}>
+              Treino em andamento
+            </Text>
+            <Text style={styles.subtitle}>0 de 5 concluídos</Text>
 
-          <View style={styles.progressBarBackground}>
-            <View style={[styles.progressBarFill, { width: "20%" }]} />
+            <View style={styles.progressBarBackground}>
+              <View style={[styles.progressBarFill, { width: "20%" }]} />
+            </View>
           </View>
         </View>
 
@@ -57,6 +69,7 @@ export default function TreinoEmAndamento() {
         >
           <Text variant="labelLarge">Finalizar treino</Text>
         </Button>
+        <Text>ID: {id ?? "—"}</Text>
       </ScrollView>
     </View>
   );
@@ -64,6 +77,7 @@ export default function TreinoEmAndamento() {
 
 const styles = StyleSheet.create({
   header: {
+    flexDirection: "row",
     padding: 16,
     paddingTop: 30,
   },

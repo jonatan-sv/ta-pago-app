@@ -10,8 +10,12 @@ import Exercise from "../components/Exercise";
 import WeekInfo from "@models/weekInfo.model";
 import History from "@models/history.model";
 
-export default function HomeScreen({ setIndex }) {
+import { useContext } from "react";
+import { NavigationContext } from "@contexts/NavigationContext";
+
+export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const { setIndex } = useContext(NavigationContext);
 
   // Dados temporários
   const weekInfo = new WeekInfo("Novembro", 2025, 11, 12, 365, [

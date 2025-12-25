@@ -21,6 +21,7 @@ module.exports = function (api) {
             "@consts": "./src/shared/constants",
             "@assets": "./src/assets",
             "@models": "./src/models",
+            "@contexts": "./src/contexts",
           },
         },
       ],

@@ -1,12 +1,18 @@
-import Tag from "@shared/components/Tag";
 import Colors from "@consts/Colors";
+import { useNavigation } from "@react-navigation/native";
+import Tag from "@shared/components/Tag";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 
-export default function Training({ item, setIndex }) {
+export default function Training({ item }) {
+  const navigation = useNavigation();
   return (
-    <Card style={styles.todayCard} mode="contained" onPress={() => setIndex(3)}>
+    <Card
+      style={styles.todayCard}
+      mode="contained"
+      onPress={() => navigation.push("TrainingProgress", { id: "teste" })}
+    >
       <View style={styles.todayHeader}>
         <View style={styles.avatar}>
           <LinearGradient
