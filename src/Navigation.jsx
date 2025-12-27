@@ -22,9 +22,11 @@ import TrainingProgress from "./features/training/progress/screens/TrainingProgr
 import RatingScreen from "./features/training/rating/screens/RatingScreen.jsx";
 import TrainingSelectScreen from "./features/training/select/screens/TrainingSelectScreen";
 import TestScreen from "@shared/screens/TestScreen";
+import Login from "./features/login/login.jsx";
+
 
 export default function Navigation() {
-  const [index, setIndex] = useState(2);
+  const [index, setIndex] = useState(5);
   const Stack = createNativeStackNavigator();
 
   const [routes] = useState([
@@ -72,6 +74,16 @@ export default function Navigation() {
         <MsIcon icon={msAccountCircle} color="white" size={26} />
       ),
     },
+    {
+      key: "login",
+      title: "Login",
+      focusedIcon: () => (
+        <MsIcon icon={msAccountCircleFill} color="white" size={26} />
+      ),
+      unfocusedIcon: () => (
+        <MsIcon icon={msAccountCircle} color="white" size={26} />
+      ),
+    },
   ]);
 
   const renderScene = ({ route }) => {
@@ -105,7 +117,9 @@ export default function Navigation() {
 
       case "profile":
         return <RatingScreen />;
-
+        
+      case "login":
+        return <Login />;
       default:
         return null;
     }
