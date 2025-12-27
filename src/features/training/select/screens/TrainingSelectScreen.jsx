@@ -1,12 +1,10 @@
 import Colors from "@consts/Colors";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import AppFrame from "@shared/components/AppFrame";
+import { StyleSheet } from "react-native";
 import Training from "../components/Training";
 import WeekProgress from "../components/WeekProgress";
 
 export default function TrainingSelectScreen() {
-  const insets = useSafeAreaInsets();
-
   const treinos = [
     {
       id: "A",
@@ -41,25 +39,8 @@ export default function TrainingSelectScreen() {
   ];
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.Orange[700],
-      }}
-    >
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{
-          borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
-          paddingTop: 17,
-          paddingHorizontal: 12,
-          marginTop: insets.top + 10,
-          marginHorizontal: 10,
-          backgroundColor: Colors.Orange[100],
-        }}
-      >
-        {/*
+    <AppFrame>
+      {/*
         <View
           style={{
             flex: 1,
@@ -78,15 +59,11 @@ export default function TrainingSelectScreen() {
         </View>
         */}
 
-        <WeekProgress></WeekProgress>
-        {treinos.map((treino) => (
-          <Training key={treino.id} item={treino} />
-        ))}
-
-        {/* Espaço Vazio no final da lista */}
-        <View style={{ width: "100%", height: 20 }}></View>
-      </ScrollView>
-    </View>
+      <WeekProgress></WeekProgress>
+      {treinos.map((treino) => (
+        <Training key={treino.id} item={treino} />
+      ))}
+    </AppFrame>
   );
 }
 

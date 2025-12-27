@@ -1,20 +1,18 @@
-import { msAlarmFill } from "@material-symbols-react-native/outlined-400";
 import Colors from "@consts/Colors";
-import { MsIcon } from "material-symbols-react-native";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { FAB, Text } from "react-native-paper";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Calendar from "../components/Calendar";
-import TodayExercise from "../components/TodayExercise";
-import Exercise from "../components/Exercise";
-import WeekInfo from "@models/weekInfo.model";
-import History from "@models/history.model";
-
-import { useContext } from "react";
 import { NavigationContext } from "@contexts/NavigationContext";
+import { msAlarmFill } from "@material-symbols-react-native/outlined-400";
+import History from "@models/history.model";
+import WeekInfo from "@models/weekInfo.model";
+import AppFrame from "@shared/components/AppFrame";
+import { MsIcon } from "material-symbols-react-native";
+import { useContext } from "react";
+import { StyleSheet, View } from "react-native";
+import { FAB, Text } from "react-native-paper";
+import Calendar from "../components/Calendar";
+import Exercise from "../components/Exercise";
+import TodayExercise from "../components/TodayExercise";
 
 export default function HomeScreen() {
-  const insets = useSafeAreaInsets();
   const { setIndex } = useContext(NavigationContext);
 
   // Dados temporários
@@ -57,24 +55,8 @@ export default function HomeScreen() {
   ]);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.Orange[700],
-      }}
-    >
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{
-          borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
-          paddingTop: 17,
-          paddingHorizontal: 12,
-          marginTop: insets.top + 10,
-          marginHorizontal: 10,
-          backgroundColor: Colors.Orange[100],
-        }}
-      >
+    <View style={{ flex: 1 }}>
+      <AppFrame>
         {/* Calendário */}
         <Calendar weekInfo={weekInfo}></Calendar>
 
@@ -91,11 +73,7 @@ export default function HomeScreen() {
         {history.list.map((item, i) => (
           <Exercise key={i} item={item}></Exercise>
         ))}
-
-        {/* Espaço Vazio no final da lista */}
-        <View style={{ width: "100%", height: 20 }}></View>
-      </ScrollView>
-
+      </AppFrame>
       {/* Botão Flutuante */}
       <View style={styles.fabContainer}>
         <FAB
