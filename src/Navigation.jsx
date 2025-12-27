@@ -23,10 +23,10 @@ import RatingScreen from "./features/training/rating/screens/RatingScreen.jsx";
 import TrainingSelectScreen from "./features/training/select/screens/TrainingSelectScreen";
 import TestScreen from "@shared/screens/TestScreen";
 import Login from "./features/login/login.jsx";
-
+import Cadastro from "./features/cadastro/Cadastro.jsx";
 
 export default function Navigation() {
-  const [index, setIndex] = useState(5);
+  const [index, setIndex] = useState(6);
   const Stack = createNativeStackNavigator();
 
   const [routes] = useState([
@@ -84,6 +84,19 @@ export default function Navigation() {
         <MsIcon icon={msAccountCircle} color="white" size={26} />
       ),
     },
+
+    {
+      key: "cadastro",
+      title: "Cadastro",
+      focusedIcon: () => (
+        <MsIcon icon={msAccountCircleFill} color="white" size={26} />
+      ),
+      unfocusedIcon: () => (
+        <MsIcon icon={msAccountCircle} color="white" size={26} />
+      ),
+    },
+
+
   ]);
 
   const renderScene = ({ route }) => {
@@ -120,6 +133,10 @@ export default function Navigation() {
         
       case "login":
         return <Login />;
+
+      case "cadastro":
+        return <Cadastro />;
+
       default:
         return null;
     }
