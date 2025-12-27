@@ -1,37 +1,24 @@
-import * as React from 'react';
-import Navigation from "../../Navigation";
-
+import * as React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image
-} from 'react-native';
-
-import {
+  Button,
   Provider as PaperProvider,
   TextInput,
-  Button
-} from 'react-native-paper';
+} from "react-native-paper";
+import Logo from "@shared/assets/AuthLogo";
 
 export default function Login() {
-  const [email, setEmail] = React.useState('');
-  const [senha, setSenha] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [senha, setSenha] = React.useState("");
   const [mostrarSenha, setMostrarSenha] = React.useState(false);
 
   return (
     <PaperProvider>
       <View style={styles.container}>
-
         {/* LOGO */}
-        <Image
-          source={{
-            uri: 'COLE_AQUI_A_URL_DA_SUA_LOGO'
-          }}
-          style={styles.logo}
-        />
-
+        <View style={styles.logo}>
+          <Logo />
+        </View>
         {/* TÍTULO */}
         <Text style={styles.title}>Login</Text>
 
@@ -42,8 +29,7 @@ export default function Login() {
           }}
         >
           <Text style={styles.subtitle}>
-            Não possui uma conta?{' '}
-            <Text style={styles.link}>Crie aqui!</Text>
+            Não possui uma conta? <Text style={styles.link}>Crie aqui!</Text>
           </Text>
         </TouchableOpacity>
 
@@ -55,7 +41,7 @@ export default function Login() {
           style={styles.input}
           outlineColor="#E4CFC7"
           activeOutlineColor="#9C3D1E"
-          onFocus={() => setEmail('usuario@email.com')}
+          onFocus={() => setEmail("usuario@email.com")}
           theme={{ roundness: 14 }}
         />
 
@@ -68,11 +54,11 @@ export default function Login() {
           style={styles.input}
           outlineColor="#E4CFC7"
           activeOutlineColor="#9C3D1E"
-          onFocus={() => setSenha('senha123')}
+          onFocus={() => setSenha("senha123")}
           theme={{ roundness: 14 }}
           right={
             <TextInput.Icon
-              icon={mostrarSenha ? 'eye-off' : 'eye'}
+              icon={mostrarSenha ? "eye-off" : "eye"}
               color="#9C3D1E"
               onPress={() => setMostrarSenha(!mostrarSenha)}
             />
@@ -107,7 +93,6 @@ export default function Login() {
         >
           Continuar com o Google
         </Button>
-
       </View>
     </PaperProvider>
   );
@@ -115,74 +100,74 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF3EB',
+    backgroundColor: "#FFF3EB",
     paddingHorizontal: 28,
-    justifyContent: 'center'
+    justifyContent: "center",
   },
 
   logo: {
     width: 110,
     height: 110,
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    marginBottom: 20
+    resizeMode: "contain",
+    alignSelf: "center",
+    marginBottom: 20,
   },
 
   title: {
     fontSize: 26,
-    fontWeight: '600',
-    color: '#2D1B4E',
-    textAlign: 'center',
-    marginBottom: 6
+    fontWeight: "600",
+    color: "#2D1B4E",
+    textAlign: "center",
+    marginBottom: 6,
   },
 
   subtitle: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 14,
-    color: '#6B6B6B',
-    marginBottom: 28
+    color: "#6B6B6B",
+    marginBottom: 28,
   },
 
   link: {
-    color: '#C13B2A',
-    fontWeight: '500'
+    color: "#C13B2A",
+    fontWeight: "500",
   },
 
   input: {
     marginBottom: 14,
-    backgroundColor: '#FFF'
+    backgroundColor: "#FFF",
   },
 
   forgot: {
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     fontSize: 13,
-    color: '#C13B2A',
-    marginBottom: 26
+    color: "#C13B2A",
+    marginBottom: 26,
   },
 
   button: {
     borderRadius: 30,
-    backgroundColor: '#8B2E1A',
-    marginBottom: 22
+    backgroundColor: "#8B2E1A",
+    marginBottom: 22,
   },
 
   buttonContent: {
-    height: 52
+    height: 52,
   },
 
   or: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 13,
-    color: '#6B6B6B',
-    marginBottom: 16
+    color: "#6B6B6B",
+    marginBottom: 16,
   },
 
   google: {
     borderRadius: 30,
-    borderColor: '#E4CFC7'
+    borderColor: "#E4CFC7",
   },
 
   googleContent: {
-    height: 50
-  }
+    height: 50,
+  },
 });
