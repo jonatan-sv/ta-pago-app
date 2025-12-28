@@ -1,26 +1,26 @@
-import * as React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import {
-  Button,
-  Provider as PaperProvider,
-  TextInput,
-} from "react-native-paper";
+import Colors from "@consts/Colors";
 import Logo from "@shared/assets/AuthLogo";
+import AppFrame from "@shared/components/AppFrame";
+import { useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Button, Text, TextInput } from "react-native-paper";
 
 export default function Login() {
-  const [email, setEmail] = React.useState("");
-  const [senha, setSenha] = React.useState("");
-  const [mostrarSenha, setMostrarSenha] = React.useState(false);
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   return (
-    <PaperProvider>
+    <AppFrame>
       <View style={styles.container}>
         {/* LOGO */}
         <View style={styles.logo}>
           <Logo />
         </View>
         {/* TÍTULO */}
-        <Text style={styles.title}>Login</Text>
+        <Text variant="headlineSmall" style={styles.title}>
+          Login
+        </Text>
 
         {/* CRIAR CONTA */}
         <TouchableOpacity
@@ -28,8 +28,11 @@ export default function Login() {
             // navigation.navigate('Cadastro')
           }}
         >
-          <Text style={styles.subtitle}>
-            Não possui uma conta? <Text style={styles.link}>Crie aqui!</Text>
+          <Text variant="titleMedium" style={styles.subtitle}>
+            Não possui uma conta?{" "}
+            <Text variant="titleMedium" style={styles.link}>
+              Crie aqui!
+            </Text>
           </Text>
         </TouchableOpacity>
 
@@ -40,7 +43,7 @@ export default function Login() {
           value={email}
           style={styles.input}
           outlineColor="#E4CFC7"
-          activeOutlineColor="#9C3D1E"
+          activeOutlineColor={Colors.Orange[700]}
           onFocus={() => setEmail("usuario@email.com")}
           theme={{ roundness: 14 }}
         />
@@ -53,13 +56,13 @@ export default function Login() {
           secureTextEntry={!mostrarSenha}
           style={styles.input}
           outlineColor="#E4CFC7"
-          activeOutlineColor="#9C3D1E"
+          activeOutlineColor={Colors.Orange[700]}
           onFocus={() => setSenha("senha123")}
           theme={{ roundness: 14 }}
           right={
             <TextInput.Icon
               icon={mostrarSenha ? "eye-off" : "eye"}
-              color="#9C3D1E"
+              color={Colors.Orange[700]}
               onPress={() => setMostrarSenha(!mostrarSenha)}
             />
           }
@@ -67,7 +70,9 @@ export default function Login() {
 
         {/* ESQUECI A SENHA */}
         <TouchableOpacity>
-          <Text style={styles.forgot}>Esqueci a senha</Text>
+          <Text variant="titleSmall" style={styles.forgot}>
+            Esqueci a senha
+          </Text>
         </TouchableOpacity>
 
         {/* BOTÃO ENTRAR */}
@@ -81,7 +86,9 @@ export default function Login() {
         </Button>
 
         {/* OU */}
-        <Text style={styles.or}>Ou</Text>
+        <Text variant="titleMedium" style={styles.or}>
+          Ou
+        </Text>
 
         {/* GOOGLE (DESATIVADO) */}
         <Button
@@ -94,14 +101,13 @@ export default function Login() {
           Continuar com o Google
         </Button>
       </View>
-    </PaperProvider>
+    </AppFrame>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF3EB",
-    paddingHorizontal: 28,
+    paddingHorizontal: 13,
     justifyContent: "center",
   },
 
@@ -111,26 +117,25 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     alignSelf: "center",
     marginBottom: 20,
+    marginTop: 60,
   },
 
   title: {
-    fontSize: 26,
-    fontWeight: "600",
-    color: "#2D1B4E",
+    fontWeight: "bold",
+    color: Colors.Blue[700],
     textAlign: "center",
     marginBottom: 6,
   },
 
   subtitle: {
     textAlign: "center",
-    fontSize: 14,
     color: "#6B6B6B",
     marginBottom: 28,
   },
 
   link: {
-    color: "#C13B2A",
-    fontWeight: "500",
+    color: Colors.Orange[700],
+    fontWeight: "bold",
   },
 
   input: {
@@ -140,14 +145,14 @@ const styles = StyleSheet.create({
 
   forgot: {
     alignSelf: "flex-end",
-    fontSize: 13,
-    color: "#C13B2A",
+    fontWeight: "bold",
+    color: Colors.Orange[700],
     marginBottom: 26,
   },
 
   button: {
     borderRadius: 30,
-    backgroundColor: "#8B2E1A",
+    backgroundColor: Colors.Orange[800],
     marginBottom: 22,
   },
 
@@ -157,7 +162,7 @@ const styles = StyleSheet.create({
 
   or: {
     textAlign: "center",
-    fontSize: 13,
+    fontWeight: "bold",
     color: "#6B6B6B",
     marginBottom: 16,
   },

@@ -1,21 +1,19 @@
+import Colors from "@consts/Colors";
 import Logo from "@shared/assets/AuthLogo";
-import * as React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import {
-  Button,
-  Provider as PaperProvider,
-  TextInput,
-} from "react-native-paper";
+import AppFrame from "@shared/components/AppFrame";
+import { useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Button, Text, TextInput } from "react-native-paper";
 
 export default function Cadastro() {
-  const [nome, setNome] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [senha, setSenha] = React.useState("");
-  const [confirmarSenha, setConfirmarSenha] = React.useState(false);
-  const [mostrarSenha, setMostrarSenha] = React.useState(false);
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState(false);
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   return (
-    <PaperProvider>
+    <AppFrame>
       <View style={styles.container}>
         {/* LOGO */}
         <View style={styles.logo}>
@@ -23,7 +21,9 @@ export default function Cadastro() {
         </View>
 
         {/* TÍTULO */}
-        <Text style={styles.title}>Cadastre-se</Text>
+        <Text variant="headlineSmall" style={styles.title}>
+          Cadastre-se
+        </Text>
 
         {/* JÁ POSSUI CONTA */}
         <TouchableOpacity
@@ -32,8 +32,11 @@ export default function Cadastro() {
             // navigation.navigate('Login')
           }}
         >
-          <Text style={styles.subtitle}>
-            Já possui uma conta? <Text style={styles.link}>Entre aqui!</Text>
+          <Text variant="titleMedium" style={styles.subtitle}>
+            Já possui uma conta?{" "}
+            <Text variant="titleMedium" style={styles.link}>
+              Entre aqui!
+            </Text>
           </Text>
         </TouchableOpacity>
 
@@ -44,7 +47,7 @@ export default function Cadastro() {
           value={nome}
           style={styles.input}
           outlineColor="#E4CFC7"
-          activeOutlineColor="#9C3D1E"
+          activeOutlineColor={Colors.Orange[700]}
           theme={{ roundness: 14 }}
           onFocus={() => setNome("Nome Completo")}
         />
@@ -56,7 +59,7 @@ export default function Cadastro() {
           value={email}
           style={styles.input}
           outlineColor="#E4CFC7"
-          activeOutlineColor="#9C3D1E"
+          activeOutlineColor={Colors.Orange[700]}
           theme={{ roundness: 14 }}
           onFocus={() => setEmail("usuario@email.com")}
         />
@@ -69,13 +72,13 @@ export default function Cadastro() {
           secureTextEntry={!mostrarSenha}
           style={styles.input}
           outlineColor="#E4CFC7"
-          activeOutlineColor="#9C3D1E"
+          activeOutlineColor={Colors.Orange[700]}
           theme={{ roundness: 14 }}
           onFocus={() => setSenha("senha123")}
           right={
             <TextInput.Icon
               icon={mostrarSenha ? "eye-off" : "eye"}
-              color="#9C3D1E"
+              color={Colors.Orange[700]}
               onPress={() => setMostrarSenha(!mostrarSenha)}
             />
           }
@@ -89,7 +92,7 @@ export default function Cadastro() {
           secureTextEntry={!mostrarSenha}
           style={styles.input}
           outlineColor="#E4CFC7"
-          activeOutlineColor="#9C3D1E"
+          activeOutlineColor={Colors.Orange[700]}
           theme={{ roundness: 14 }}
           onFocus={() => setConfirmarSenha("senha123")}
         />
@@ -105,7 +108,9 @@ export default function Cadastro() {
         </Button>
 
         {/* OU */}
-        <Text style={styles.or}>Ou</Text>
+        <Text variant="titleMedium" style={styles.or}>
+          Ou
+        </Text>
 
         {/* GOOGLE (DESATIVADO) */}
         <Button
@@ -118,15 +123,14 @@ export default function Cadastro() {
           Continuar com o Google
         </Button>
       </View>
-    </PaperProvider>
+    </AppFrame>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF3EB",
-    paddingHorizontal: 28,
+    paddingHorizontal: 13,
     justifyContent: "center",
   },
 
@@ -136,26 +140,25 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     alignSelf: "center",
     marginBottom: 20,
+    marginTop: 60,
   },
 
   title: {
-    fontSize: 26,
-    fontWeight: "600",
-    color: "#2D1B4E",
+    fontWeight: "bold",
+    color: Colors.Blue[700],
     textAlign: "center",
     marginBottom: 6,
   },
 
   subtitle: {
     textAlign: "center",
-    fontSize: 14,
     color: "#6B6B6B",
     marginBottom: 28,
   },
 
   link: {
-    color: "#C13B2A",
-    fontWeight: "500",
+    color: Colors.Orange[700],
+    fontWeight: "bold",
   },
 
   input: {
@@ -165,7 +168,7 @@ const styles = StyleSheet.create({
 
   button: {
     borderRadius: 30,
-    backgroundColor: "#8B2E1A",
+    backgroundColor: Colors.Orange[800],
     marginTop: 10,
     marginBottom: 22,
   },
@@ -175,8 +178,8 @@ const styles = StyleSheet.create({
   },
 
   or: {
+    fontWeight: "bold",
     textAlign: "center",
-    fontSize: 13,
     color: "#6B6B6B",
     marginBottom: 16,
   },
