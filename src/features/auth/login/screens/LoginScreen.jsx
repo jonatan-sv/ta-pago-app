@@ -5,11 +5,9 @@ import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 
-export default function Cadastro() {
-  const [nome, setNome] = useState("");
+export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState(false);
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
   return (
@@ -19,62 +17,48 @@ export default function Cadastro() {
         <View style={styles.logo}>
           <Logo />
         </View>
-
         {/* TÍTULO */}
         <Text variant="headlineSmall" style={styles.title}>
-          Cadastre-se
+          Login
         </Text>
 
-        {/* JÁ POSSUI CONTA */}
+        {/* CRIAR CONTA */}
         <TouchableOpacity
           onPress={() => {
-            // FUTURAMENTE:
-            // navigation.navigate('Login')
+            // navigation.navigate('Cadastro')
           }}
         >
           <Text variant="titleMedium" style={styles.subtitle}>
-            Já possui uma conta?{" "}
+            Não possui uma conta?{" "}
             <Text variant="titleMedium" style={styles.link}>
-              Entre aqui!
+              Crie aqui!
             </Text>
           </Text>
         </TouchableOpacity>
 
-        {/* NOME COMPLETO */}
-        <TextInput
-          mode="outlined"
-          placeholder="Digite o seu nome completo"
-          value={nome}
-          style={styles.input}
-          outlineColor="#E4CFC7"
-          activeOutlineColor={Colors.Orange[700]}
-          theme={{ roundness: 14 }}
-          onFocus={() => setNome("Nome Completo")}
-        />
-
         {/* EMAIL */}
         <TextInput
           mode="outlined"
-          placeholder="Digite o seu email"
+          placeholder="Email"
           value={email}
           style={styles.input}
           outlineColor="#E4CFC7"
           activeOutlineColor={Colors.Orange[700]}
-          theme={{ roundness: 14 }}
           onFocus={() => setEmail("usuario@email.com")}
+          theme={{ roundness: 14 }}
         />
 
         {/* SENHA */}
         <TextInput
           mode="outlined"
-          placeholder="Insira a sua senha"
+          placeholder="Senha"
           value={senha}
           secureTextEntry={!mostrarSenha}
           style={styles.input}
           outlineColor="#E4CFC7"
           activeOutlineColor={Colors.Orange[700]}
-          theme={{ roundness: 14 }}
           onFocus={() => setSenha("senha123")}
+          theme={{ roundness: 14 }}
           right={
             <TextInput.Icon
               icon={mostrarSenha ? "eye-off" : "eye"}
@@ -84,27 +68,21 @@ export default function Cadastro() {
           }
         />
 
-        {/* CONFIRMAÇÃO DE SENHA */}
-        <TextInput
-          mode="outlined"
-          placeholder="Confirme a sua senha"
-          value={confirmarSenha}
-          secureTextEntry={!mostrarSenha}
-          style={styles.input}
-          outlineColor="#E4CFC7"
-          activeOutlineColor={Colors.Orange[700]}
-          theme={{ roundness: 14 }}
-          onFocus={() => setConfirmarSenha("senha123")}
-        />
+        {/* ESQUECI A SENHA */}
+        <TouchableOpacity>
+          <Text variant="titleSmall" style={styles.forgot}>
+            Esqueci a senha
+          </Text>
+        </TouchableOpacity>
 
-        {/* BOTÃO CADASTRAR */}
+        {/* BOTÃO ENTRAR */}
         <Button
           mode="contained"
           style={styles.button}
           contentStyle={styles.buttonContent}
-          onPress={() => {}}
+          onPress={() => setIndex(2)}
         >
-          Cadastre-se
+          Entrar
         </Button>
 
         {/* OU */}
@@ -126,7 +104,6 @@ export default function Cadastro() {
     </AppFrame>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -166,10 +143,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
   },
 
+  forgot: {
+    alignSelf: "flex-end",
+    fontWeight: "bold",
+    color: Colors.Orange[700],
+    marginBottom: 26,
+  },
+
   button: {
     borderRadius: 30,
     backgroundColor: Colors.Orange[800],
-    marginTop: 10,
     marginBottom: 22,
   },
 
@@ -178,8 +161,8 @@ const styles = StyleSheet.create({
   },
 
   or: {
-    fontWeight: "bold",
     textAlign: "center",
+    fontWeight: "bold",
     color: "#6B6B6B",
     marginBottom: 16,
   },

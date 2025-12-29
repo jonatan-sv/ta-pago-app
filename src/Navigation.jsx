@@ -22,8 +22,9 @@ import TrainingProgress from "./features/training/progress/screens/TrainingProgr
 import RatingScreen from "./features/training/rating/screens/RatingScreen.jsx";
 import TrainingSelectScreen from "./features/training/select/screens/TrainingSelectScreen";
 import TestScreen from "@shared/screens/TestScreen";
-import Login from "./features/login/login.jsx";
-import Cadastro from "./features/cadastro/Cadastro.jsx";
+import Login from "./features/auth/login/screens/LoginScreen.jsx";
+import Cadastro from "./features/auth/register/screens/RegisterScreen.jsx";
+import ProfileScreen from "./features/profile/screens/ProfileScreen.jsx";
 
 export default function Navigation() {
   const [index, setIndex] = useState(6);
@@ -95,8 +96,6 @@ export default function Navigation() {
         <MsIcon icon={msAccountCircle} color="white" size={26} />
       ),
     },
-
-
   ]);
 
   const renderScene = ({ route }) => {
@@ -129,8 +128,8 @@ export default function Navigation() {
         return <TestScreen />;
 
       case "profile":
-        return <RatingScreen />;
-        
+        return <ProfileScreen />;
+
       case "login":
         return <Login />;
 
