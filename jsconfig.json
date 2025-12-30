@@ -16,6 +16,9 @@
             ],
             "@contexts/*": [
                 "src/contexts/*"
+            ],
+            "@feats/*": [
+                "src/features/*"
             ]
         }
     }

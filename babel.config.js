@@ -22,6 +22,7 @@ module.exports = function (api) {
             "@assets": "./src/assets",
             "@models": "./src/models",
             "@contexts": "./src/contexts",
+            "@feats": "./src/features",
           },
         },
       ],
