@@ -23,6 +23,7 @@ module.exports = function (api) {
             "@models": "./src/models",
             "@contexts": "./src/contexts",
             "@feats": "./src/features",
+            "@trainings": "./src/trainings",
           },
         },
       ],

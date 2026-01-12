@@ -27,6 +27,7 @@ const Colors = {
     rigoroso: "#FFE2E2",
     leve: "#D1FAE4",
   },
+  Green: "#16A34A",
 };
 
 export default Colors;

@@ -1,0 +1,55 @@
+{
+  "treino": "B",
+  "exercicios": [
+    {
+      "id": "B1",
+      "nome": "Puxada alta articulada - Supreme",
+      "grupoMuscular": "Costa",
+      "subGrupo": "Dorsal",
+      "series": 4,
+      "repeticoes": "12-15",
+      "carga": [20, 20, 20, 20],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "B2",
+      "nome": "Puxada - Triângulo - Neutra",
+      "grupoMuscular": "Costa",
+      "subGrupo": "Dorsal",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [16, 0, 16],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "B3",
+      "nome": "Remada Baixa - Triângulo",
+      "grupoMuscular": "Costa",
+      "subGrupo": "Dorsal",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [20, 0, 0],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "B4",
+      "nome": "Remada Cavalinho - Máquina - Neutra",
+      "grupoMuscular": "Costa",
+      "subGrupo": "Meio das costas",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [10, 10, 10],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "B5",
+      "nome": "Rosca Martelo - Duplo Halter - Em Pé",
+      "grupoMuscular": "Antebraço",
+      "subGrupo": "Bíceps",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [10, 10, 10],
+      "descansoSegundos": 60
+    }
+  ]
+}

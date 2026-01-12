@@ -1,30 +1,61 @@
 import Colors from "@consts/Colors";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
+import Slider from "@react-native-community/slider";
 
-export default function ExerciseCard({ title, muscle }) {
-  const [checked, setChecked] = useState(false);
-  const [value, setValue] = useState(0);
+export default function ExerciseCard({ exercise, title, muscle }) {
+  const initialSeries = exercise?.series ?? 3;
+  const initialCarga = Array.isArray(exercise?.carga)
+    ? exercise.carga.map((c) => (c == null ? "" : String(c)))
+    : Array(initialSeries).fill("");
+
+  const [checkedSeries, setCheckedSeries] = useState(
+    Array(initialSeries).fill(false)
+  );
+  const [cargaValues, setCargaValues] = useState(initialCarga);
+  const [descanso, setDescanso] = useState(
+    exercise?.descansoSegundos ? String(exercise.descansoSegundos) : ""
+  );
+  const [pesoMaximo, setPesoMaximo] = useState("");
+  const [amplitude, setAmplitude] = useState(40);
+
+  const titleText = title ?? exercise?.nome ?? "Exercício";
+  const muscleText = muscle ?? exercise?.grupoMuscular ?? "";
+  const [headerChecked, setHeaderChecked] = useState(false);
+
+  const allChecked = checkedSeries.length > 0 && checkedSeries.every(Boolean);
+
+  useEffect(() => {
+    setHeaderChecked(allChecked);
+  }, [allChecked]);
 
   return (
-    <Card style={styles.card} mode="contained">
+    <Card style={allChecked ? styles.cardDone : styles.card} mode="contained">
       <Card.Content>
         <View style={styles.exerciseHeader}>
           <Checkbox
-            color={Colors.Orange[800]}
+            color={Colors.Green}
             uncheckedColor={Colors.Orange[800]}
-            status={checked ? "checked" : "unchecked"}
+            status={headerChecked ? "checked" : "unchecked"}
             onPress={() => {
-              setChecked(!checked);
+              const next = !headerChecked;
+              setCheckedSeries(Array(initialSeries).fill(next));
+              setHeaderChecked(next);
             }}
           />
           <View>
-            <Text variant="titleMedium" style={styles.exerciseTitle}>
-              {title}
+            <Text
+              variant="titleMedium"
+              style={[
+                styles.exerciseTitle,
+                allChecked ? styles.titleStrikethrough : null,
+              ]}
+            >
+              {titleText}
             </Text>
-            <Text style={styles.exerciseMuscle}>{muscle}</Text>
+            <Text style={styles.exerciseMuscle}>{muscleText}</Text>
           </View>
         </View>
 
@@ -38,22 +69,30 @@ export default function ExerciseCard({ title, muscle }) {
           <Text style={styles.headerText}>Status</Text>
         </View>
 
-        {[1, 2, 3].map((s) => (
-          <View key={s} style={styles.tableRow}>
+        {Array.from({ length: initialSeries }).map((_, idx) => (
+          <View key={idx} style={styles.tableRow}>
             <View>
-              <LinearGradient
-                colors={[Colors.Orange[900], Colors.Orange[600]]}
-                style={styles.seriesBadge}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 0, y: 1 }}
-              >
-                <Text variant="titleMedium" style={{ color: "white" }}>
-                  {s}
-                </Text>
-              </LinearGradient>
+              {allChecked ? (
+                <View style={[styles.seriesBadge, styles.seriesBadgeDone]}>
+                  <Text variant="titleMedium" style={{ color: "white" }}>
+                    {idx + 1}
+                  </Text>
+                </View>
+              ) : (
+                <LinearGradient
+                  colors={[Colors.Orange[900], Colors.Orange[600]]}
+                  style={styles.seriesBadge}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 0, y: 1 }}
+                >
+                  <Text variant="titleMedium" style={{ color: "white" }}>
+                    {idx + 1}
+                  </Text>
+                </LinearGradient>
+              )}
             </View>
 
-            <Text style={styles.repText}>12</Text>
+            <Text style={styles.repText}>{exercise?.repeticoes ?? "—"}</Text>
             <Text
               style={{ textAlign: "center", marginRight: -20, marginLeft: -12 }}
             >
@@ -62,21 +101,28 @@ export default function ExerciseCard({ title, muscle }) {
 
             <TextInput
               mode="outlined"
-              value="0"
+              value={cargaValues[idx] ?? ""}
               style={styles.cargaInput}
               cursorColor={Colors.Orange[800]}
               activeOutlineColor={Colors.Orange[800]}
               outlineStyle={{ borderRadius: 4, borderWidth: 0.5 }}
               keyboardType="numeric"
-              onChangeText={(text) => setValue(text.replace(/[^0-9]/g, ""))}
+              onChangeText={(text) => {
+                const clean = text.replace(/[^0-9]/g, "");
+                const next = [...cargaValues];
+                next[idx] = clean;
+                setCargaValues(next);
+              }}
             />
 
             <Checkbox
-              color={Colors.Orange[800]}
+              color={Colors.Green}
               uncheckedColor={Colors.Orange[800]}
-              status={checked ? "checked" : "unchecked"}
+              status={checkedSeries[idx] ? "checked" : "unchecked"}
               onPress={() => {
-                setChecked(!checked);
+                const next = [...checkedSeries];
+                next[idx] = !next[idx];
+                setCheckedSeries(next);
               }}
             />
           </View>
@@ -91,9 +137,9 @@ export default function ExerciseCard({ title, muscle }) {
             cursorColor={Colors.Orange[800]}
             activeOutlineColor={Colors.Orange[800]}
             outlineColor={Colors.Orange[800]}
-            value={value}
+            value={descanso}
             keyboardType="numeric"
-            onChangeText={(text) => setValue(text.replace(/[^0-9]/g, ""))}
+            onChangeText={(text) => setDescanso(text.replace(/[^0-9]/g, ""))}
           />
 
           <TextInput
@@ -103,9 +149,9 @@ export default function ExerciseCard({ title, muscle }) {
             cursorColor={Colors.Orange[800]}
             activeOutlineColor={Colors.Orange[800]}
             outlineColor={Colors.Orange[800]}
-            value={value}
+            value={pesoMaximo}
             keyboardType="numeric"
-            onChangeText={(text) => setValue(text.replace(/[^0-9]/g, ""))}
+            onChangeText={(text) => setPesoMaximo(text.replace(/[^0-9]/g, ""))}
           />
         </View>
 
@@ -114,7 +160,7 @@ export default function ExerciseCard({ title, muscle }) {
           Finalizar série
         </Button>
 
-        {/* Slider fake */}
+        {/* Slider real */}
         <Card style={styles.sliderCard} mode="contained">
           <LinearGradient
             colors={["#FEEBD6", "#FBD2AD"]}
@@ -125,13 +171,31 @@ export default function ExerciseCard({ title, muscle }) {
             <View style={styles.sliderHeader}>
               <Text>Amplitude do movimento</Text>
               <View style={styles.sliderTag}>
-                <Text variant="labelSmall">Limitada</Text>
+                <Text variant="labelSmall">
+                  {amplitude < 50
+                    ? "Limitada"
+                    : amplitude < 90
+                    ? "Parcial"
+                    : "Completa"}
+                </Text>
               </View>
             </View>
 
-            <View style={styles.sliderTrack}>
-              <View style={styles.sliderFill} />
-            </View>
+            <Slider
+              value={amplitude}
+              onValueChange={setAmplitude}
+              minimumValue={0}
+              maximumValue={100}
+              step={1}
+              minimumTrackTintColor={Colors.Orange[700]}
+              maximumTrackTintColor={Colors.Orange[200]}
+              thumbTintColor="transparent"
+              style={{
+                marginTop: 12,
+                width: "100%",
+                height: 40,
+              }}
+            />
 
             <View style={styles.sliderLabels}>
               <Text>Limitada</Text>
@@ -152,6 +216,15 @@ const styles = StyleSheet.create({
     elevation: 0,
     borderWidth: 2,
     borderColor: Colors.Orange[700],
+    padding: 8,
+  },
+  cardDone: {
+    marginTop: 16,
+    backgroundColor: "white",
+    borderRadius: 12,
+    elevation: 0,
+    borderWidth: 2,
+    borderColor: Colors.Green,
     padding: 8,
   },
 
@@ -190,6 +263,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderBottomLeftRadius: 10,
     borderTopLeftRadius: 10,
+  },
+
+  titleStrikethrough: { textDecorationLine: "line-through" },
+
+  seriesBadgeDone: {
+    backgroundColor: Colors.Green,
+    borderWidth: 2,
+    borderColor: Colors.Green,
   },
 
   repText: { width: 40, textAlign: "center" },

@@ -4,11 +4,20 @@ import AppFrame from "@shared/components/AppFrame";
 import { StyleSheet, View } from "react-native";
 import { Button, IconButton, Text } from "react-native-paper";
 import ExerciseCard from "../components/ExerciseCard";
+import TreinoA from "@trainings/treinoA.json";
+import TreinoB from "@trainings/treinoB.json";
+import TreinoC from "@trainings/treinoC.json";
 
 export default function TreinoEmAndamento() {
   const navigation = useNavigation();
   const route = useRoute();
   const { id } = route.params || {};
+
+  const treino = {
+    A: TreinoA,
+    B: TreinoB,
+    C: TreinoC,
+  }[id];
 
   return (
     <AppFrame>
@@ -34,9 +43,9 @@ export default function TreinoEmAndamento() {
       </View>
 
       {/* Exercício */}
-      <ExerciseCard title="Supino reto" muscle="Peito" />
-
-      <ExerciseCard title="Rosca martelo" muscle="Bíceps" />
+      {treino.exercicios.map((exercise, index) => (
+        <ExerciseCard key={index} exercise={exercise} />
+      ))}
 
       <Button
         mode="contained"
@@ -50,7 +59,6 @@ export default function TreinoEmAndamento() {
       >
         <Text variant="labelLarge">Finalizar treino</Text>
       </Button>
-      <Text>ID: {id ?? "—"}</Text>
     </AppFrame>
   );
 }

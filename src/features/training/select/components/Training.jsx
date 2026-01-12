@@ -11,7 +11,7 @@ export default function Training({ item }) {
     <Card
       style={styles.todayCard}
       mode="contained"
-      onPress={() => navigation.push("TrainingProgress", { id: "teste" })}
+      onPress={() => navigation.push("TrainingProgress", { id: item.id })}
     >
       <View style={styles.todayHeader}>
         <View style={styles.avatar}>

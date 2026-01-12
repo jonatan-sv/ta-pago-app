@@ -1,0 +1,62 @@
+{
+  "treino": "C",
+  "exercicios": [
+    {
+      "id": "C1",
+      "nome": "Agachamento Sumô - Halter - Step em V",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Posterior",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [20, 20, 20],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "C2",
+      "nome": "Elevação Pélvica",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Glúteos",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [20, 20, 20, 20]
+    },
+    {
+      "id": "C3",
+      "nome": "Extensão de Quadril - Crossover - Polia Baixa",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Posterior",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [5, 5, 5, 8],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "C4",
+      "nome": "Cadeira Abdutora - Tronco à Frente",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Glúteos",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [40, 40, 40, 40],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "C5",
+      "nome": "Búlgaro com Halter - Mão Inversa",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Anterior",
+      "series": 3,
+      "repeticoes": "10-12",
+      "descansoSegundos": 60
+    },
+    {
+      "id": "C6",
+      "nome": "Cadeira Flexora - Máquina Articulada",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Posterior",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [25, 25, 25, 25]
+    }
+  ]
+}

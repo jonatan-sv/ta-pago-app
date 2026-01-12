@@ -19,6 +19,9 @@
             ],
             "@feats/*": [
                 "src/features/*"
+            ],
+            "@trainings/*": [
+                "src/trainings/*"
             ]
         }
     }

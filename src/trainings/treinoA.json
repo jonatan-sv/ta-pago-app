@@ -1,0 +1,80 @@
+{
+  "treino": "A",
+  "exercicios": [
+    {
+      "id": "A1",
+      "nome": "Levantamento Terra - Barra - Estilo Sumô",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Posterior",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [10, 10, 10],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "A2",
+      "nome": "Agachamento Guiado - Smith",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [20, 20, 20],
+      "grupoMuscular": "Perna",
+      "subGrupo": "Anterior",
+      "descansoSegundos": 60
+    },
+    {
+      "id": "A3",
+      "nome": "Agachamento Livre - Sem Carga",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [0, 0, 0],
+      "grupoMuscular": "Perna",
+      "subGrupo": "Anterior",
+      "descansoSegundos": 60
+    },
+    {
+      "id": "A4",
+      "nome": "Extensora - Cadeira Articulada",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Anterior",
+      "series": 4,
+      "repeticoes": "10-15",
+      "carga": [20, 20, 20, 20],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "A5",
+      "nome": "Afundo no Smith - Step - Pé Anterior",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Anterior",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [0, 0, 0],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "A6",
+      "nome": "Adutor - Cadeira Articulada",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Adutor",
+      "series": 3,
+      "repeticoes": 15,
+      "descansoSegundos": 45
+    },
+    {
+      "id": "A7",
+      "nome": "Flexão Plantar - Hack",
+      "series": 4,
+      "repeticoes": 12,
+      "grupoMuscular": "Panturrilha",
+      "descansoSegundos": 60
+    },
+    {
+      "id": "A8",
+      "nome": "Flexão Plantar - Sem Peso - Em Pé",
+      "series": 4,
+      "repeticoes": 12,
+      "grupoMuscular": "Panturrilha",
+      "descansoSegundos": 60
+    }
+  ]
+}
