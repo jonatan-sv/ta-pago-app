@@ -4,13 +4,24 @@ import AppFrame from "@shared/components/AppFrame";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
+import { saveLocalAccount } from "../../account.model";
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ onRegistered }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState(false);
   const [mostrarSenha, setMostrarSenha] = useState(false);
+
+  const handleRegister = async () => {
+    const account = { nome, email };
+    const ok = await saveLocalAccount(account);
+    if (ok) {
+      if (typeof onRegistered === "function") onRegistered();
+    } else {
+      console.warn("Não foi possível salvar a conta local");
+    }
+  };
 
   return (
     <AppFrame>
@@ -102,7 +113,8 @@ export default function RegisterScreen() {
           mode="contained"
           style={styles.button}
           contentStyle={styles.buttonContent}
-          onPress={() => {}}
+          onPress={handleRegister}
+          disabled={!nome || !email || !senha}
         >
           Cadastre-se
         </Button>

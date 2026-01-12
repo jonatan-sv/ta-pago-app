@@ -20,13 +20,15 @@ import HomeScreen from "@feats/home/screens/HomeScreen";
 import TrainingProgress from "@feats/training/progress/screens/TrainingProgress";
 import TrainingSelectScreen from "@feats/training/select/screens/TrainingSelectScreen";
 import TestScreen from "@shared/screens/TestScreen";
+/*
 import Login from "@feats/auth/login/screens/LoginScreen.jsx";
 import Register from "@feats/auth/register/screens/RegisterScreen.jsx";
+*/
 import ProfileScreen from "@feats/profile/screens/ProfileScreen.jsx";
 import RouteItem from "@shared/RouteItem";
 
 export default function Navigation() {
-  const [index, setIndex] = useState(6);
+  const [index, setIndex] = useState(2);
   const Stack = createNativeStackNavigator();
 
   const [routes] = useState([
@@ -35,8 +37,10 @@ export default function Navigation() {
     RouteItem("home", "Início", msTodayFill, msToday),
     RouteItem("measures", "Medidas", msStraightenFill, msStraighten),
     RouteItem("profile", "Perfil", msAccountCircleFill, msAccountCircle),
+    /*
     RouteItem("login", "Login", msAccountCircleFill, msAccountCircle),
     RouteItem("register", "Registro", msAccountCircleFill, msAccountCircle),
+    */
   ]);
 
   const renderScene = ({ route }) => {
@@ -71,12 +75,13 @@ export default function Navigation() {
       case "profile":
         return <ProfileScreen />;
 
+      /*
       case "login":
         return <Login />;
 
       case "register":
         return <Register />;
-
+      */
       default:
         return null;
     }
