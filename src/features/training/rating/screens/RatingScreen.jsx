@@ -1,5 +1,10 @@
 import Colors from "@consts/Colors";
+import {
+  msImage,
+  msVideocamFill,
+} from "@material-symbols-react-native/outlined-400";
 import AppFrame from "@shared/components/AppFrame";
+import { MsIcon } from "material-symbols-react-native";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import {
@@ -10,11 +15,14 @@ import {
   Text,
   TextInput,
 } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 export default function AvaliarTreinoScreen() {
   const [qualidade, setQualidade] = useState(null);
   const [observacoes, setObservacoes] = useState("");
   const [ciclo, setCiclo] = useState(null);
+  const [impacto, setImpacto] = useState(null);
+  const navigation = useNavigation();
 
   const CheckboxItem = ({ label, value, selected, onPress }) => (
     <View style={styles.checkboxRow}>
@@ -32,7 +40,11 @@ export default function AvaliarTreinoScreen() {
     <AppFrame>
       {/* Header */}
       <View style={styles.header}>
-        <IconButton icon="arrow-left" size={24} />
+        <IconButton
+          icon="arrow-left"
+          size={24}
+          onPress={() => navigation.goBack()}
+        />
         <View>
           <Text variant="titleLarge">Avaliar seu treino</Text>
           <Text variant="bodyMedium">Como foi seu treino hoje?</Text>
@@ -83,12 +95,13 @@ export default function AvaliarTreinoScreen() {
           mode="outlined"
           placeholder="Descreva como foi o seu treino, e como você se sentiu hoje..."
           multiline
-          numberOfLines={4}
+          numberOfLines={10}
           value={observacoes}
           onChangeText={setObservacoes}
           cursorColor={Colors.Orange[800]}
           activeOutlineColor={Colors.Orange[800]}
           outlineColor={Colors.Orange[800]}
+          style={{ paddingTop: 10, paddingBottom: 30 }}
         />
       </Card>
 
@@ -114,6 +127,27 @@ export default function AvaliarTreinoScreen() {
             />
           )
         )}
+        {ciclo == "Menstruação" && (
+          <Text variant="bodyMedium" style={styles.subtitle}>
+            Impacto no desempenho
+          </Text>
+        )}
+        {ciclo == "Menstruação" &&
+          [
+            "Positivo - Me Senti Forte",
+            "Neutro - Não me afetou",
+            "Negativo - Perdi o rendimento do treino",
+          ].map((item) => (
+            <CheckboxItem
+              key={item}
+              label={item}
+              value={item}
+              selected={impacto === item}
+              onPress={() => setImpacto(item)}
+              color={Colors.Orange[800]}
+              uncheckedColor={Colors.Orange[800]}
+            />
+          ))}
       </Card>
 
       {/* Foto / Vídeo */}
@@ -123,12 +157,40 @@ export default function AvaliarTreinoScreen() {
         </Text>
 
         <View style={styles.mediaButtons}>
-          <Button mode="outlined" icon="camera" onPress={() => {}}>
-            Tirar foto
+          <Button
+            mode="outlined"
+            onPress={() => {}}
+            textColor={Colors.Orange[800]}
+            style={{ borderColor: Colors.Orange[800] }}
+            contentStyle={{ height: 100, width: 180 }}
+          >
+            <View
+              style={{ flexDirection: "column", alignItems: "center", gap: 8 }}
+            >
+              <MsIcon icon={msImage} color={Colors.Orange[800]} size={26} />
+              <Text> Tirar foto</Text>
+            </View>
           </Button>
 
-          <Button mode="outlined" icon="video" onPress={() => {}}>
-            Gravar vídeo
+          <Button
+            mode="outlined"
+            onPress={() => {}}
+            textColor={Colors.Orange[800]}
+            style={{
+              borderColor: Colors.Orange[800],
+            }}
+            contentStyle={{ height: 100, width: 180 }}
+          >
+            <View
+              style={{ flexDirection: "column", alignItems: "center", gap: 8 }}
+            >
+              <MsIcon
+                icon={msVideocamFill}
+                color={Colors.Orange[800]}
+                size={26}
+              />
+              <Text> Gravar vídeo</Text>
+            </View>
           </Button>
         </View>
       </Card>
@@ -139,6 +201,7 @@ export default function AvaliarTreinoScreen() {
         style={styles.submitButton}
         contentStyle={{ height: 52 }}
         onPress={() => {}}
+        buttonColor={Colors.Orange[800]}
       >
         Concluir avaliação
       </Button>
@@ -180,6 +243,7 @@ const styles = StyleSheet.create({
   },
   mediaButtons: {
     flexDirection: "row",
+    justifyContent: "center",
     gap: 12,
   },
   submitButton: {

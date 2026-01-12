@@ -20,6 +20,7 @@ import HomeScreen from "@feats/home/screens/HomeScreen";
 import TrainingProgress from "@feats/training/progress/screens/TrainingProgress";
 import TrainingSelectScreen from "@feats/training/select/screens/TrainingSelectScreen";
 import TestScreen from "@shared/screens/TestScreen";
+import RatingScreen from "@feats/training/rating/screens/RatingScreen";
 /*
 import Login from "@feats/auth/login/screens/LoginScreen.jsx";
 import Register from "@feats/auth/register/screens/RegisterScreen.jsx";
@@ -57,6 +58,11 @@ export default function Navigation() {
               <Stack.Screen
                 name="TrainingProgress"
                 component={TrainingProgress}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="TrainingRating"
+                component={RatingScreen}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>

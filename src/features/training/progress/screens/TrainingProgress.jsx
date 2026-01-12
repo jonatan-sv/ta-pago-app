@@ -58,7 +58,7 @@ export default function TreinoEmAndamento() {
         buttonColor={Colors.Orange[300]}
         textColor={Colors.Blue[700]}
         onPress={() => {
-          console.log("Pressed");
+          navigation.push("TrainingRating");
         }}
       >
         <Text variant="labelLarge">Finalizar treino</Text>

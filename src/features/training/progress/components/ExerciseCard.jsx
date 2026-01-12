@@ -72,7 +72,7 @@ export default function ExerciseCard({ exercise, title, muscle }) {
         {Array.from({ length: initialSeries }).map((_, idx) => (
           <View key={idx} style={styles.tableRow}>
             <View>
-              {allChecked ? (
+              {checkedSeries[idx] ? (
                 <View style={[styles.seriesBadge, styles.seriesBadgeDone]}>
                   <Text variant="titleMedium" style={{ color: "white" }}>
                     {idx + 1}
