@@ -1,0 +1,54 @@
+{
+  "treino": "E",
+  "exercicios": [
+    {
+      "id": "E1",
+      "nome": "Stiff - Barra",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Posterior",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "E2",
+      "nome": "Flexora - Mesa/Cama Articulada",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Posterior",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "E3",
+      "nome": "Extensora - Cadeira Articulada",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Anterior",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "E4",
+      "nome": "Adutor - Cadeira Articulada",
+      "grupoMuscular": "Perna",
+      "subGrupo": "Anterior",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "E5",
+      "nome": "Flexão Plantar - Máquina",
+      "grupoMuscular": "Panturrilha",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    }
+  ]
+}

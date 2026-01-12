@@ -7,6 +7,8 @@ import ExerciseCard from "../components/ExerciseCard";
 import TreinoA from "@trainings/treinoA.json";
 import TreinoB from "@trainings/treinoB.json";
 import TreinoC from "@trainings/treinoC.json";
+import TreinoD from "@trainings/treinoD.json";
+import TreinoE from "@trainings/treinoE.json";
 
 export default function TreinoEmAndamento() {
   const navigation = useNavigation();
@@ -17,6 +19,8 @@ export default function TreinoEmAndamento() {
     A: TreinoA,
     B: TreinoB,
     C: TreinoC,
+    D: TreinoD,
+    E: TreinoE,
   }[id];
 
   return (

@@ -1,0 +1,68 @@
+{
+  "treino": "D",
+  "exercicios": [
+    {
+      "id": "D1",
+      "nome": "Supino Vertical - Máquina Articulada",
+      "grupoMuscular": "Peitoral",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "D2",
+      "nome": "Supino Inclinado - Máquina Articulada",
+      "grupoMuscular": "Peitoral",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "D3",
+      "nome": "Elevação Lateral - Halter",
+      "grupoMuscular": "Ombro",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "D4",
+      "nome": "Elevação Frontal - Halter",
+      "grupoMuscular": "Ombro",
+      "series": 3,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "D5",
+      "nome": "Tríceps Pulley - Crossover - Barra - Polia Alta",
+      "grupoMuscular": "Tríceps",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "D6",
+      "nome": "Tríceps Coice - Dupla Corda - Polia Média",
+      "grupoMuscular": "Tríceps",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    },
+    {
+      "id": "D7",
+      "nome": "Abdominal Supra - Solo",
+      "grupoMuscular": "Abdômen",
+      "series": 4,
+      "repeticoes": 12,
+      "carga": [],
+      "descansoSegundos": 60
+    }
+  ]
+}
