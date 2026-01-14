@@ -1,47 +1,76 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import AppFrame from "@shared/components/AppFrame";
 import Colors from "@consts/Colors";
-import { LineChart } from "react-native-chart-kit";
+import AppFrame from "@shared/components/AppFrame";
+import { useState, useContext } from "react";
+import { NavigationContext } from "@contexts/NavigationContext";
+import {
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { LineChart } from "react-native-gifted-charts";
+import { IconButton, Text, Checkbox } from "react-native-paper";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-const screenWidth = Dimensions.get("window").width - 40;
+const screenWidth = Dimensions.get("window").width - 80;
 
 export default function TrainingSummaryScreen() {
   const [activeTab, setActiveTab] = useState("reps");
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { qualidade, ciclo, impacto } = route.params || {};
+  const { setIndex } = useContext(NavigationContext);
 
-  const data = {
-    labels: ["Agosto", "Setembro", "Outubro", "Novembro"],
-    datasets: [
-      {
-        data: [0, 180, 120, 250],
-        color: (opacity = 1) => `rgba(227,78,19, ${opacity})`,
-        strokeWidth: 2,
-      },
-    ],
+  const handleFinish = () => {
+    navigation.reset({ index: 0, routes: [{ name: "TrainingSelect" }] });
+    setIndex(2);
   };
 
-  const chartConfig = {
-    backgroundGradientFrom: Colors.Orange[100],
-    backgroundGradientTo: Colors.Orange[100],
-    color: (opacity = 1) => `rgba(227,78,19, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(21,71,132, ${opacity})`,
-    propsForDots: { r: "4", strokeWidth: "2", stroke: Colors.Orange[600] },
-    propsForBackgroundLines: { stroke: Colors.Orange[300] },
+  const date = new Date().toLocaleDateString("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  const repsData = [
+    { value: 0, label: "Ago" },
+    { value: 180, label: "Set" },
+    { value: 120, label: "Out" },
+    { value: 250, label: "Nov" },
+  ];
+  const timeData = [
+    { value: 0, label: "Ago" },
+    { value: 100, label: "Set" },
+    { value: 200, label: "Out" },
+    { value: 300, label: "Nov" },
+  ];
+  const loadData = [
+    { value: 0, label: "Ago" },
+    { value: 20, label: "Set" },
+    { value: 50, label: "Out" },
+    { value: 10, label: "Nov" },
+  ];
+
+  const chartMap = {
+    reps: repsData,
+    time: timeData,
+    load: loadData,
   };
 
   return (
     <AppFrame>
       <ScrollView>
-        <View style={styles.headerRow}>
-          <Text style={styles.title}>Resumo do treino</Text>
-          <Text style={styles.sub}>Sexta feira, 4 de novembro</Text>
+        <View style={styles.header}>
+          <IconButton
+            icon="arrow-left"
+            size={24}
+            onPress={() => navigation.goBack()}
+          />
+          <View>
+            <Text variant="titleLarge">Resumo do treino</Text>
+            <Text variant="bodyMedium">{date}</Text>
+          </View>
         </View>
 
         <View style={styles.statsRow}>
@@ -50,11 +79,17 @@ export default function TrainingSummaryScreen() {
             <Text style={styles.statLabel}>Repetições</Text>
           </View>
           <View style={styles.statCard}>
-            <Text style={styles.statNumber}>200</Text>
+            <View style={styles.numberRow}>
+              <Text style={styles.statNumber}>200</Text>
+              <Text style={styles.statLabel}>min</Text>
+            </View>
             <Text style={styles.statLabel}>Tempo</Text>
           </View>
           <View style={styles.statCard}>
-            <Text style={styles.statNumber}>100</Text>
+            <View style={styles.numberRow}>
+              <Text style={styles.statNumber}>100</Text>
+              <Text style={styles.statLabel}>KG</Text>
+            </View>
             <Text style={styles.statLabel}>Carga total</Text>
           </View>
         </View>
@@ -105,37 +140,78 @@ export default function TrainingSummaryScreen() {
         </View>
 
         <LineChart
-          data={data}
-          width={screenWidth}
+          data={chartMap[activeTab]}
           height={220}
-          chartConfig={chartConfig}
-          bezier
-          style={styles.chart}
-          withInnerLines={true}
-          withShadow={false}
+          width={screenWidth}
+          color={Colors.Orange[600]}
+          thickness={2}
+          curved
+          spacing={100}
+          yAxisTextStyle={{ color: Colors.Blue[700] }}
+          xAxisLabelTextStyle={{ color: Colors.Blue[700] }}
+          yAxisColor={Colors.Orange[300]}
+          xAxisColor={Colors.Orange[300]}
+          showVerticalLines={false}
+          showHorizontalLines
+          horizontalRulesStyle={{
+            stroke: Colors.Orange[300],
+            strokeDasharray: "6,6",
+          }}
+          maxValue={Math.max(...chartMap[activeTab].map((item) => item.value))}
+          noOfSections={chartMap[activeTab].length}
+          dataPointsColor={Colors.Orange[600]}
+          dataPointsRadius={4}
+          hideRules={false}
         />
 
-        <Text style={[styles.sectionTitle, { marginTop: 20 }]}>
+        <Text style={[styles.sectionTitle, { marginTop: 40 }]}>
           Qualidade do treino
         </Text>
         <Text style={styles.sectionSub}>Como voce se sentiu hoje</Text>
 
         <View style={styles.checkListBox}>
-          <View style={styles.checkItem}>
-            <Text style={styles.checkIcon}>✓</Text>
-            <Text style={styles.checkText}>Menstruação</Text>
+          <View style={styles.checkboxRow}>
+            <Checkbox
+              status={"checked"}
+              onPress={() => {}}
+              color={Colors.Orange[800]}
+              uncheckedColor={Colors.Orange[800]}
+            />
+            <Text>
+              {
+                {
+                  bom: "Bom - Hoje era o meu dia",
+                  medio: "Médio - Poderia melhorar",
+                  ruim: "Ruim - Hoje não foi o meu dia",
+                }[qualidade]
+              }
+            </Text>
           </View>
-          <View style={styles.checkItem}>
-            <Text style={styles.checkIcon}>✓</Text>
-            <Text style={styles.checkText}>Bom - Hoje era o meu dia</Text>
-          </View>
-          <View style={styles.checkItem}>
-            <Text style={styles.checkIcon}>✓</Text>
-            <Text style={styles.checkText}>Positivo - me senti forte</Text>
-          </View>
+          {ciclo && (
+            <View style={styles.checkboxRow}>
+              <Checkbox
+                status={"checked"}
+                onPress={() => {}}
+                color={Colors.Orange[800]}
+                uncheckedColor={Colors.Orange[800]}
+              />
+              <Text>{ciclo}</Text>
+            </View>
+          )}
+          {impacto && ciclo === "Menstruação" && (
+            <View style={styles.checkboxRow}>
+              <Checkbox
+                status={"checked"}
+                onPress={() => {}}
+                color={Colors.Orange[800]}
+                uncheckedColor={Colors.Orange[800]}
+              />
+              <Text>{impacto}</Text>
+            </View>
+          )}
         </View>
 
-        <TouchableOpacity style={styles.finishBtn}>
+        <TouchableOpacity style={styles.finishBtn} onPress={handleFinish}>
           <Text style={styles.finishText}>Concluir avaliação</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -144,7 +220,12 @@ export default function TrainingSummaryScreen() {
 }
 
 const styles = StyleSheet.create({
-  headerRow: { marginBottom: 12 },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 16,
+  },
   title: {
     fontSize: 28,
     fontWeight: "700",
@@ -156,17 +237,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 16,
+    marginBottom: 16,
   },
   statCard: {
     width: (Dimensions.get("window").width - 64) / 3,
     backgroundColor: "white",
-    padding: 12,
+    padding: 16,
     borderRadius: 12,
-    alignItems: "center",
+    alignItems: "left",
     borderWidth: 2,
-    borderColor: Colors.Orange[600],
+    borderColor: Colors.Orange[800],
   },
-  statNumber: { fontSize: 28, fontWeight: "700", color: Colors.Blue[700] },
+  statNumber: {
+    fontSize: 28,
+    fontWeight: "700",
+    color: Colors.Blue[700],
+  },
+  numberRow: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    gap: 4,
+  },
   statLabel: { marginTop: 8, color: Colors.Blue[700] },
   sectionTitle: {
     marginTop: 20,
@@ -181,6 +272,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 6,
     marginTop: 8,
+    marginBottom: 12,
   },
   tab: { flex: 1, paddingVertical: 10, alignItems: "center", borderRadius: 10 },
   tabActive: {
@@ -211,10 +303,14 @@ const styles = StyleSheet.create({
   checkText: { color: Colors.Blue[700] },
   finishBtn: {
     marginTop: 18,
-    backgroundColor: Colors.Orange[600],
+    backgroundColor: Colors.Orange[800],
     paddingVertical: 14,
     borderRadius: 30,
     alignItems: "center",
   },
   finishText: { color: "white", fontWeight: "700" },
+  checkboxRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });

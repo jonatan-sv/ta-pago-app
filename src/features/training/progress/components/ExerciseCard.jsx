@@ -3,14 +3,8 @@ import Slider from "@react-native-community/slider";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import {
-  Button,
-  Card,
-  Checkbox,
-  Text,
-  TextInput,
-  Portal,
-} from "react-native-paper";
+import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
+import Tooltip from "@shared/components/Tooltip";
 
 export default function ExerciseCard({
   exercise,
@@ -68,16 +62,7 @@ export default function ExerciseCard({
   return (
     <Card style={allChecked ? styles.cardDone : styles.card} mode="contained">
       <Card.Content>
-        {/* Tooltip */}
-        <Portal>
-          {tooltipVisible && (
-            <View style={styles.tooltipContainer}>
-              <View style={styles.tooltip}>
-                <Text style={styles.tooltipText}>{tooltipMessage}</Text>
-              </View>
-            </View>
-          )}
-        </Portal>
+        <Tooltip visible={tooltipVisible} message={tooltipMessage} />
 
         {/* Cabeçalho */}
         <View style={styles.exerciseHeader}>
@@ -385,25 +370,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 6,
-  },
-  tooltipContainer: {
-    position: "absolute",
-    top: 80,
-    left: 20,
-    right: 20,
-    alignItems: "center",
-    zIndex: 999,
-  },
-  tooltip: {
-    backgroundColor: "#B33F0B",
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 8,
-    elevation: 4,
-  },
-  tooltipText: {
-    color: "white",
-    fontSize: 13,
-    textAlign: "center",
   },
 });

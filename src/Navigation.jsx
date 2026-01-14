@@ -39,7 +39,6 @@ export default function Navigation() {
     RouteItem("home", "Início", msTodayFill, msToday),
     RouteItem("measures", "Medidas", msStraightenFill, msStraighten),
     RouteItem("profile", "Perfil", msAccountCircleFill, msAccountCircle),
-    RouteItem("summary", "Resumo", msAccountCircleFill, msAccountCircle),
     /*
     RouteItem("login", "Login", msAccountCircleFill, msAccountCircle),
     RouteItem("register", "Registro", msAccountCircleFill, msAccountCircle),
@@ -63,13 +62,13 @@ export default function Navigation() {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="TrainingSummary"
-                component={TrainingSummaryScreen}
+                name="TrainingRating"
+                component={RatingScreen}
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="TrainingRating"
-                component={RatingScreen}
+                name="TrainingSummary"
+                component={TrainingSummaryScreen}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
@@ -88,8 +87,6 @@ export default function Navigation() {
       case "profile":
         return <ProfileScreen />;
 
-      case "summary":
-        return <TrainingSummaryScreen />;
       /*
       case "login":
         return <Login />;

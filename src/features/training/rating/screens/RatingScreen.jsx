@@ -16,13 +16,25 @@ import {
   TextInput,
 } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import Tooltip from "@shared/components/Tooltip";
 
 export default function AvaliarTreinoScreen() {
   const [qualidade, setQualidade] = useState(null);
   const [observacoes, setObservacoes] = useState("");
   const [ciclo, setCiclo] = useState(null);
   const [impacto, setImpacto] = useState(null);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [tooltipMessage, setTooltipMessage] = useState("");
   const navigation = useNavigation();
+
+  function showTooltip(message) {
+    setTooltipMessage(message);
+    setTooltipVisible(true);
+
+    setTimeout(() => {
+      setTooltipVisible(false);
+    }, 2500);
+  }
 
   const CheckboxItem = ({ label, value, selected, onPress }) => (
     <View style={styles.checkboxRow}>
@@ -195,12 +207,21 @@ export default function AvaliarTreinoScreen() {
         </View>
       </Card>
 
+      <Tooltip visible={tooltipVisible} message={tooltipMessage} />
+
       {/* Botão concluir */}
       <Button
         mode="contained"
         style={styles.submitButton}
         contentStyle={{ height: 52 }}
-        onPress={() => {}}
+        onPress={() => {
+          if (!qualidade) {
+            showTooltip("Selecione a qualidade do treino antes de continuar.");
+            return;
+          }
+
+          navigation.push("TrainingSummary", { qualidade, ciclo, impacto });
+        }}
         buttonColor={Colors.Orange[800]}
       >
         Concluir avaliação
