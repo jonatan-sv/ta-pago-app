@@ -1,11 +1,17 @@
 import Colors from "@consts/Colors";
+import Slider from "@react-native-community/slider";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
-import Slider from "@react-native-community/slider";
 
-export default function ExerciseCard({ exercise, title, muscle }) {
+export default function ExerciseCard({
+  exercise,
+  title,
+  muscle,
+  onComplete,
+  index,
+}) {
   const initialSeries = exercise?.series ?? 3;
   const initialCarga = Array.isArray(exercise?.carga)
     ? exercise.carga.map((c) => (c == null ? "" : String(c)))
@@ -30,6 +36,14 @@ export default function ExerciseCard({ exercise, title, muscle }) {
   useEffect(() => {
     setHeaderChecked(allChecked);
   }, [allChecked]);
+
+  const completedRef = useRef(false);
+  useEffect(() => {
+    if (allChecked && !completedRef.current) {
+      completedRef.current = true;
+      if (onComplete) onComplete(exercise, index);
+    }
+  }, [allChecked, exercise, index, onComplete]);
 
   return (
     <Card style={allChecked ? styles.cardDone : styles.card} mode="contained">
