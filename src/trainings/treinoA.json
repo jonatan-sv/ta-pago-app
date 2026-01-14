@@ -58,6 +58,7 @@
       "subGrupo": "Adutor",
       "series": 3,
       "repeticoes": 15,
+      "carga": [0, 0, 0],
       "descansoSegundos": 45
     },
     {
@@ -65,6 +66,7 @@
       "nome": "Flexão Plantar - Hack",
       "series": 4,
       "repeticoes": 12,
+      "carga": [0, 0, 0, 0],
       "grupoMuscular": "Panturrilha",
       "descansoSegundos": 60
     },
@@ -73,6 +75,7 @@
       "nome": "Flexão Plantar - Sem Peso - Em Pé",
       "series": 4,
       "repeticoes": 12,
+      "carga": [0, 0, 0, 0],
       "grupoMuscular": "Panturrilha",
       "descansoSegundos": 60
     }

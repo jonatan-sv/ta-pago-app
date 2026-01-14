@@ -7,7 +7,7 @@
       "grupoMuscular": "Peitoral",
       "series": 3,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -16,7 +16,7 @@
       "grupoMuscular": "Peitoral",
       "series": 3,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -25,7 +25,7 @@
       "grupoMuscular": "Ombro",
       "series": 3,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -34,7 +34,7 @@
       "grupoMuscular": "Ombro",
       "series": 3,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -43,7 +43,7 @@
       "grupoMuscular": "Tríceps",
       "series": 4,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -52,7 +52,7 @@
       "grupoMuscular": "Tríceps",
       "series": 4,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -61,7 +61,7 @@
       "grupoMuscular": "Abdômen",
       "series": 4,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0, 0],
       "descansoSegundos": 60
     }
   ]

@@ -8,7 +8,7 @@
       "subGrupo": "Posterior",
       "series": 4,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -18,7 +18,7 @@
       "subGrupo": "Posterior",
       "series": 3,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -28,7 +28,7 @@
       "subGrupo": "Anterior",
       "series": 4,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -38,7 +38,7 @@
       "subGrupo": "Anterior",
       "series": 4,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0, 0],
       "descansoSegundos": 60
     },
     {
@@ -47,7 +47,7 @@
       "grupoMuscular": "Panturrilha",
       "series": 4,
       "repeticoes": 12,
-      "carga": [],
+      "carga": [0, 0, 0, 0],
       "descansoSegundos": 60
     }
   ]

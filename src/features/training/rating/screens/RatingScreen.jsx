@@ -121,7 +121,7 @@ export default function AvaliarTreinoScreen() {
               label={item}
               value={item}
               selected={ciclo === item}
-              onPress={() => setCiclo(item)}
+              onPress={() => setCiclo(ciclo === item ? null : item)}
               color={Colors.Orange[800]}
               uncheckedColor={Colors.Orange[800]}
             />

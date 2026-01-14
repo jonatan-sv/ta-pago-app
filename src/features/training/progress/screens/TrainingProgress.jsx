@@ -28,14 +28,11 @@ export default function TreinoEmAndamento() {
   const [restSeconds, setRestSeconds] = useState(null);
   const [completed, setCompleted] = useState([]);
 
-  const handleExerciseComplete = (exercise, index) => {
+  const handleExerciseComplete = (exercise, index, secs) => {
     const id = exercise?.id ?? index;
     if (completed.includes(id)) return;
     setCompleted((p) => [...p, id]);
-    const secs = exercise?.descansoSegundos
-      ? Number(exercise.descansoSegundos)
-      : 60;
-    setRestSeconds(secs);
+    setRestSeconds(Number(secs));
   };
 
   return (

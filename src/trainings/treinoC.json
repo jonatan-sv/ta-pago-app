@@ -47,6 +47,7 @@
       "subGrupo": "Anterior",
       "series": 3,
       "repeticoes": "10-12",
+      "carga": [0, 0, 0],
       "descansoSegundos": 60
     },
     {
