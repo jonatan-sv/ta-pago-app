@@ -1,4 +1,3 @@
-import Colors from "@consts/Colors";
 import { NavigationContext } from "@contexts/NavigationContext";
 import { msAlarmFill } from "@material-symbols-react-native/outlined-400";
 import History from "@models/history.model";
@@ -11,9 +10,11 @@ import { FAB, Text } from "react-native-paper";
 import Calendar from "../components/Calendar";
 import Exercise from "../components/Exercise";
 import TodayExercise from "../components/TodayExercise";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function HomeScreen() {
   const { setIndex } = useContext(NavigationContext);
+  const { theme, toggleTheme } = useTheme();
 
   // Dados temporários
   const weekInfo = new WeekInfo("Novembro", 2025, 11, 12, 365, [
@@ -61,13 +62,19 @@ export default function HomeScreen() {
         <Calendar weekInfo={weekInfo}></Calendar>
 
         {/* Treino de Hoje */}
-        <Text variant="titleLarge" style={styles.sectionTitle}>
+        <Text
+          variant="titleLarge"
+          style={[styles.sectionTitle, { color: theme.Blue[700] }]}
+        >
           Treino de Hoje
         </Text>
         <TodayExercise></TodayExercise>
 
         {/* Histórico */}
-        <Text variant="titleLarge" style={styles.sectionTitle}>
+        <Text
+          variant="titleLarge"
+          style={[styles.sectionTitle, { color: theme.Blue[700] }]}
+        >
           Histórico de Treinos
         </Text>
         {history.list.map((item, i) => (
@@ -77,11 +84,18 @@ export default function HomeScreen() {
       {/* Botão Flutuante */}
       <View style={styles.fabContainer}>
         <FAB
-          style={{ backgroundColor: Colors.Orange[700] }}
+          style={{ backgroundColor: theme.Orange[700] }}
           color="white"
           icon={() => <MsIcon icon={msAlarmFill} color="white" size={24} />}
           label="Treinar"
           onPress={() => setIndex(0)}
+        ></FAB>
+        <FAB
+          style={{ backgroundColor: theme.Orange[700] }}
+          color="white"
+          icon={() => <MsIcon icon={msAlarmFill} color="white" size={24} />}
+          label="Tema"
+          onPress={toggleTheme}
         ></FAB>
       </View>
     </View>
@@ -92,7 +106,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     marginBottom: 12,
     marginLeft: 4,
-    color: Colors.Blue[700],
   },
   fabContainer: {
     position: "absolute",

@@ -9,18 +9,28 @@ import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 import Colors from "@consts/Colors";
 import Tag from "@shared/components/StreakTag";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function Calendar({ weekInfo }) {
+  const { theme, themeName } = useTheme();
+
   return (
-    <Card mode="contained" style={styles.cardCalendar}>
+    <Card
+      mode="contained"
+      style={[styles.cardCalendar, { borderColor: theme.Border }]}
+    >
       <LinearGradient
-        colors={["#FEEBD6", "#FBD2AD"]}
+        colors={
+          themeName === "light"
+            ? [theme.Orange[100], theme.Orange[300]]
+            : [theme.Background, theme.Background]
+        }
         style={{ borderRadius: 14, padding: 16 }}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
       >
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text variant="titleMedium">
+          <Text style={{ color: theme.Text }} variant="titleMedium">
             {weekInfo.month} - {weekInfo.year}
           </Text>
           <Tag label={weekInfo.streakCount} side="left"></Tag>
@@ -29,7 +39,7 @@ export default function Calendar({ weekInfo }) {
         <View style={styles.weekRow}>
           {["D", "S", "T", "Q", "Q", "S", "S"].map((d, i) => (
             <View key={i} style={styles.weekItem}>
-              <Text>{d}</Text>
+              <Text style={{ color: theme.Text }}>{d}</Text>
               <View style={styles.dayCircle}>
                 {weekInfo.streak[i] && (
                   <View style={styles.dayCircleCheck}>
@@ -46,18 +56,18 @@ export default function Calendar({ weekInfo }) {
         </View>
 
         <View style={styles.calendarFooter}>
-          <Text variant="bodyMedium">
+          <Text style={{ color: theme.Text }} variant="bodyMedium">
             {weekInfo.daysCompleted} de {weekInfo.totalDays}
           </Text>
           <View style={{ flexDirection: "row", gap: 12, marginLeft: 16 }}>
             <MsIcon
               icon={msArrowBackIosFill}
-              color={Colors.Blue[700]}
+              color={theme.Text}
               size={16}
             ></MsIcon>
             <MsIcon
               icon={msArrowForwardIosFill}
-              color={Colors.Blue[700]}
+              color={theme.Text}
               size={16}
             ></MsIcon>
           </View>
@@ -72,7 +82,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 16,
     borderWidth: 2,
-    borderColor: Colors.Orange[800],
     backgroundColor: Colors.Orange[100],
   },
   weekRow: {

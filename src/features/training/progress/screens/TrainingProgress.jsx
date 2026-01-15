@@ -11,11 +11,13 @@ import TreinoB from "@trainings/treinoB.json";
 import TreinoC from "@trainings/treinoC.json";
 import TreinoD from "@trainings/treinoD.json";
 import TreinoE from "@trainings/treinoE.json";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function TreinoEmAndamento() {
   const navigation = useNavigation();
   const route = useRoute();
   const { id } = route.params || {};
+  const { theme } = useTheme();
 
   const treino = {
     A: TreinoA,
@@ -43,12 +45,16 @@ export default function TreinoEmAndamento() {
             icon="arrow-left"
             size={24}
             onPress={() => navigation.goBack()}
+            iconColor={theme.Text}
           />
           <View style={styles.headerTitles}>
-            <Text variant="titleLarge" style={styles.title}>
+            <Text
+              variant="titleLarge"
+              style={[styles.title, { color: theme.Text }]}
+            >
               Treino em andamento
             </Text>
-            <Text style={styles.subtitle}>
+            <Text style={[styles.subtitle, { color: theme.Text }]}>
               {completed.length} de {treino.exercicios.length} concluídos
             </Text>
           </View>

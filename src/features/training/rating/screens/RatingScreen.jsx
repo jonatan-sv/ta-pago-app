@@ -17,6 +17,7 @@ import {
 } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import Tooltip from "@shared/components/Tooltip";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function AvaliarTreinoScreen() {
   const [qualidade, setQualidade] = useState(null);
@@ -26,6 +27,7 @@ export default function AvaliarTreinoScreen() {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [tooltipMessage, setTooltipMessage] = useState("");
   const navigation = useNavigation();
+  const { theme } = useTheme();
 
   function showTooltip(message) {
     setTooltipMessage(message);
@@ -44,7 +46,9 @@ export default function AvaliarTreinoScreen() {
         color={Colors.Orange[800]}
         uncheckedColor={Colors.Orange[800]}
       />
-      <Text onPress={onPress}>{label}</Text>
+      <Text style={{ color: theme.Text }} onPress={onPress}>
+        {label}
+      </Text>
     </View>
   );
 
@@ -56,16 +60,30 @@ export default function AvaliarTreinoScreen() {
           icon="arrow-left"
           size={24}
           onPress={() => navigation.goBack()}
+          iconColor={theme.Text}
         />
         <View>
-          <Text variant="titleLarge">Avaliar seu treino</Text>
-          <Text variant="bodyMedium">Como foi seu treino hoje?</Text>
+          <Text style={{ color: theme.Text }} variant="titleLarge">
+            Avaliar seu treino
+          </Text>
+          <Text style={{ color: theme.Text }} variant="bodyMedium">
+            Como foi seu treino hoje?
+          </Text>
         </View>
       </View>
 
       {/* Qualidade do treino */}
-      <Card style={styles.card} mode="contained">
-        <Text variant="titleMedium" style={styles.cardTitle}>
+      <Card
+        style={[
+          styles.card,
+          { borderColor: theme.Border, backgroundColor: theme.CardBackground },
+        ]}
+        mode="contained"
+      >
+        <Text
+          variant="titleMedium"
+          style={[styles.cardTitle, { color: theme.Text }]}
+        >
           Qualidade do treino
         </Text>
 
@@ -98,8 +116,17 @@ export default function AvaliarTreinoScreen() {
       </Card>
 
       {/* Observações */}
-      <Card style={styles.card} mode="contained">
-        <Text variant="titleMedium" style={styles.cardTitle}>
+      <Card
+        style={[
+          styles.card,
+          { borderColor: theme.Border, backgroundColor: theme.CardBackground },
+        ]}
+        mode="contained"
+      >
+        <Text
+          variant="titleMedium"
+          style={[styles.cardTitle, { color: theme.Text }]}
+        >
           Observações (opcional)
         </Text>
 
@@ -118,11 +145,23 @@ export default function AvaliarTreinoScreen() {
       </Card>
 
       {/* Ciclo menstrual */}
-      <Card style={styles.card} mode="contained">
-        <Text variant="titleMedium" style={styles.cardTitle}>
+      <Card
+        style={[
+          styles.card,
+          { borderColor: theme.Border, backgroundColor: theme.CardBackground },
+        ]}
+        mode="contained"
+      >
+        <Text
+          variant="titleMedium"
+          style={[styles.cardTitle, { color: theme.Text }]}
+        >
           Ciclo menstrual (opcional)
         </Text>
-        <Text variant="bodyMedium" style={styles.subtitle}>
+        <Text
+          variant="bodyMedium"
+          style={[styles.subtitle, { color: theme.Text }]}
+        >
           Período do ciclo
         </Text>
 
@@ -140,7 +179,10 @@ export default function AvaliarTreinoScreen() {
           )
         )}
         {ciclo == "Menstruação" && (
-          <Text variant="bodyMedium" style={styles.subtitle}>
+          <Text
+            variant="bodyMedium"
+            style={[styles.subtitle, { color: theme.Text }]}
+          >
             Impacto no desempenho
           </Text>
         )}
@@ -163,8 +205,17 @@ export default function AvaliarTreinoScreen() {
       </Card>
 
       {/* Foto / Vídeo */}
-      <Card style={styles.card} mode="contained">
-        <Text variant="titleMedium" style={styles.cardTitle}>
+      <Card
+        style={[
+          styles.card,
+          { borderColor: theme.Border, backgroundColor: theme.Background },
+        ]}
+        mode="contained"
+      >
+        <Text
+          variant="titleMedium"
+          style={[styles.cardTitle, { color: theme.Text }]}
+        >
           Foto/vídeo de progresso (opcional)
         </Text>
 
@@ -180,7 +231,7 @@ export default function AvaliarTreinoScreen() {
               style={{ flexDirection: "column", alignItems: "center", gap: 8 }}
             >
               <MsIcon icon={msImage} color={Colors.Orange[800]} size={26} />
-              <Text> Tirar foto</Text>
+              <Text style={{ color: theme.Text }}> Tirar foto</Text>
             </View>
           </Button>
 
@@ -201,7 +252,7 @@ export default function AvaliarTreinoScreen() {
                 color={Colors.Orange[800]}
                 size={26}
               />
-              <Text> Gravar vídeo</Text>
+              <Text style={{ color: theme.Text }}> Gravar vídeo</Text>
             </View>
           </Button>
         </View>
@@ -246,8 +297,6 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 16,
     borderWidth: 2,
-    borderColor: Colors.Orange[900],
-    backgroundColor: "white",
   },
   cardTitle: {
     marginBottom: 12,

@@ -40,37 +40,10 @@ export default function TrainingSelectScreen() {
 
   return (
     <AppFrame>
-      {/*
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-          <CircularButton
-            icon={msArrowBack}
-            backgroundColor={"transparent"}
-            style={{ marginLeft: -12 }}
-            onPress={() => setIndex(2)}
-          ></CircularButton>
-          <Text variant="titleLarge">Selecione seu treino</Text>
-        </View>
-        */}
-
-      <WeekProgress></WeekProgress>
+      <WeekProgress />
       {treinos.map((treino) => (
         <Training key={treino.id} item={treino} />
       ))}
     </AppFrame>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionTitle: {
-    marginBottom: 12,
-    marginLeft: 4,
-    color: Colors.Blue[700],
-  },
-});

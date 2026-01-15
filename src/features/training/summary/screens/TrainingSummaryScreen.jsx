@@ -12,6 +12,7 @@ import {
 import { LineChart } from "react-native-gifted-charts";
 import { IconButton, Text, Checkbox } from "react-native-paper";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useTheme } from "@contexts/ThemeContext";
 
 const screenWidth = Dimensions.get("window").width - 80;
 
@@ -21,6 +22,7 @@ export default function TrainingSummaryScreen() {
   const route = useRoute();
   const { qualidade, ciclo, impacto } = route.params || {};
   const { setIndex } = useContext(NavigationContext);
+  const { theme } = useTheme();
 
   const handleFinish = () => {
     navigation.reset({ index: 0, routes: [{ name: "TrainingSelect" }] });
@@ -66,45 +68,88 @@ export default function TrainingSummaryScreen() {
             icon="arrow-left"
             size={24}
             onPress={() => navigation.goBack()}
+            iconColor={theme.Text}
           />
           <View>
-            <Text variant="titleLarge">Resumo do treino</Text>
-            <Text variant="bodyMedium">{date}</Text>
+            <Text style={{ color: theme.Text }} variant="titleLarge">
+              Resumo do treino
+            </Text>
+            <Text style={{ color: theme.Text }} variant="bodyMedium">
+              {date}
+            </Text>
           </View>
         </View>
 
         <View style={styles.statsRow}>
-          <View style={styles.statCard}>
-            <Text style={styles.statNumber}>50</Text>
-            <Text style={styles.statLabel}>Repetições</Text>
+          <View
+            style={[
+              styles.statCard,
+              {
+                borderColor: theme.Border,
+                backgroundColor: theme.CardBackground,
+              },
+            ]}
+          >
+            <Text style={[styles.statNumber, { color: theme.Text }]}>50</Text>
+            <Text style={[styles.statLabel, { color: theme.Text }]}>
+              Repetições
+            </Text>
           </View>
-          <View style={styles.statCard}>
+          <View
+            style={[
+              styles.statCard,
+              {
+                borderColor: theme.Border,
+                backgroundColor: theme.CardBackground,
+              },
+            ]}
+          >
             <View style={styles.numberRow}>
-              <Text style={styles.statNumber}>200</Text>
-              <Text style={styles.statLabel}>min</Text>
+              <Text style={[styles.statNumber, { color: theme.Text }]}>
+                200
+              </Text>
+              <Text style={[styles.statLabel, { color: theme.Text }]}>min</Text>
             </View>
-            <Text style={styles.statLabel}>Tempo</Text>
+            <Text style={[styles.statLabel, { color: theme.Text }]}>Tempo</Text>
           </View>
-          <View style={styles.statCard}>
+          <View
+            style={[
+              styles.statCard,
+              {
+                borderColor: theme.Border,
+                backgroundColor: theme.CardBackground,
+              },
+            ]}
+          >
             <View style={styles.numberRow}>
-              <Text style={styles.statNumber}>100</Text>
-              <Text style={styles.statLabel}>KG</Text>
+              <Text style={[styles.statNumber, { color: theme.Text }]}>
+                100
+              </Text>
+              <Text style={[styles.statLabel, { color: theme.Text }]}>KG</Text>
             </View>
-            <Text style={styles.statLabel}>Carga total</Text>
+            <Text style={[styles.statLabel, { color: theme.Text }]}>
+              Carga total
+            </Text>
           </View>
         </View>
 
-        <Text style={styles.sectionTitle}>Evolução da semana</Text>
-        <Text style={styles.sectionSub}>Acompanhe seu progresso diário</Text>
+        <Text style={[styles.sectionTitle, { color: theme.Text }]}>
+          Evolução da semana
+        </Text>
+        <Text style={[styles.sectionSub, { color: theme.Text }]}>
+          Acompanhe seu progresso diário
+        </Text>
 
-        <View style={styles.tabsContainer}>
+        <View
+          style={[styles.tabsContainer, { backgroundColor: theme.Background }]}
+        >
           <TouchableOpacity
             onPress={() => setActiveTab("reps")}
             style={[styles.tab, activeTab === "reps" && styles.tabActive]}
           >
             <Text
               style={[
-                styles.tabText,
+                { color: theme.Text },
                 activeTab === "reps" && styles.tabTextActive,
               ]}
             >
@@ -117,7 +162,7 @@ export default function TrainingSummaryScreen() {
           >
             <Text
               style={[
-                styles.tabText,
+                { color: theme.Text },
                 activeTab === "time" && styles.tabTextActive,
               ]}
             >
@@ -130,7 +175,7 @@ export default function TrainingSummaryScreen() {
           >
             <Text
               style={[
-                styles.tabText,
+                { color: theme.Text },
                 activeTab === "load" && styles.tabTextActive,
               ]}
             >
@@ -147,8 +192,8 @@ export default function TrainingSummaryScreen() {
           thickness={2}
           curved
           spacing={100}
-          yAxisTextStyle={{ color: Colors.Blue[700] }}
-          xAxisLabelTextStyle={{ color: Colors.Blue[700] }}
+          yAxisTextStyle={{ color: theme.Text }}
+          xAxisLabelTextStyle={{ color: theme.Text }}
           yAxisColor={Colors.Orange[300]}
           xAxisColor={Colors.Orange[300]}
           showVerticalLines={false}
@@ -164,12 +209,24 @@ export default function TrainingSummaryScreen() {
           hideRules={false}
         />
 
-        <Text style={[styles.sectionTitle, { marginTop: 40 }]}>
+        <Text
+          style={[styles.sectionTitle, { marginTop: 40, color: theme.Text }]}
+        >
           Qualidade do treino
         </Text>
-        <Text style={styles.sectionSub}>Como voce se sentiu hoje</Text>
+        <Text style={[styles.sectionSub, { color: theme.Text }]}>
+          Como voce se sentiu hoje
+        </Text>
 
-        <View style={styles.checkListBox}>
+        <View
+          style={[
+            styles.checkListBox,
+            {
+              borderColor: theme.Border,
+              backgroundColor: theme.CardBackground,
+            },
+          ]}
+        >
           <View style={styles.checkboxRow}>
             <Checkbox
               status={"checked"}
@@ -177,7 +234,7 @@ export default function TrainingSummaryScreen() {
               color={Colors.Orange[800]}
               uncheckedColor={Colors.Orange[800]}
             />
-            <Text>
+            <Text style={{ color: theme.Text }}>
               {
                 {
                   bom: "Bom - Hoje era o meu dia",
@@ -195,7 +252,7 @@ export default function TrainingSummaryScreen() {
                 color={Colors.Orange[800]}
                 uncheckedColor={Colors.Orange[800]}
               />
-              <Text>{ciclo}</Text>
+              <Text style={{ color: theme.Text }}>{ciclo}</Text>
             </View>
           )}
           {impacto && ciclo === "Menstruação" && (
@@ -206,7 +263,7 @@ export default function TrainingSummaryScreen() {
                 color={Colors.Orange[800]}
                 uncheckedColor={Colors.Orange[800]}
               />
-              <Text>{impacto}</Text>
+              <Text style={{ color: theme.Text }}>{impacto}</Text>
             </View>
           )}
         </View>
@@ -241,12 +298,10 @@ const styles = StyleSheet.create({
   },
   statCard: {
     width: (Dimensions.get("window").width - 64) / 3,
-    backgroundColor: "white",
     padding: 16,
     borderRadius: 12,
     alignItems: "left",
     borderWidth: 2,
-    borderColor: Colors.Orange[800],
   },
   statNumber: {
     fontSize: 28,
@@ -265,10 +320,9 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: Colors.Blue[700],
   },
-  sectionSub: { color: Colors.Blue[700], marginBottom: 8 },
+  sectionSub: { marginBottom: 8 },
   tabsContainer: {
     flexDirection: "row",
-    backgroundColor: Colors.Orange[100],
     borderRadius: 12,
     padding: 6,
     marginTop: 8,
@@ -280,16 +334,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 4,
     borderBottomColor: Colors.Orange[600],
   },
-  tabText: { color: Colors.Blue[700] },
-  tabTextActive: { fontWeight: "700" },
+  tabTextActive: { fontWeight: "700", color: Colors.Blue[700] },
   chart: { marginVertical: 12, borderRadius: 8, paddingRight: 20 },
   checkListBox: {
     marginTop: 12,
-    backgroundColor: "white",
     borderRadius: 12,
     padding: 12,
     borderWidth: 2,
-    borderColor: Colors.Orange[600],
   },
   checkItem: { flexDirection: "row", alignItems: "center", marginBottom: 8 },
   checkIcon: {

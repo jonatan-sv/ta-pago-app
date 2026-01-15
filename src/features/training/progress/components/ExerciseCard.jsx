@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Card, Checkbox, Text, TextInput } from "react-native-paper";
 import Tooltip from "@shared/components/Tooltip";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function ExerciseCard({
   exercise,
@@ -14,6 +15,7 @@ export default function ExerciseCard({
   index,
 }) {
   const initialSeries = exercise?.series ?? 3;
+  const { theme, themeName } = useTheme();
 
   const initialCarga = Array.isArray(exercise?.carga)
     ? exercise.carga.map((c) => (c == null ? "" : String(c)))
@@ -59,8 +61,17 @@ export default function ExerciseCard({
     return !isNaN(peso) && peso > 0;
   }
 
+  const cardStyle = allChecked ? styles.cardDone : styles.card;
+  const cardBorder = allChecked ? Colors.Green : theme.Border;
+
   return (
-    <Card style={allChecked ? styles.cardDone : styles.card} mode="contained">
+    <Card
+      style={[
+        cardStyle,
+        { borderColor: cardBorder, backgroundColor: theme.CardBackground },
+      ]}
+      mode="contained"
+    >
       <Card.Content>
         <Tooltip visible={tooltipVisible} message={tooltipMessage} />
 
@@ -96,6 +107,7 @@ export default function ExerciseCard({
               style={[
                 styles.exerciseTitle,
                 allChecked && styles.titleStrikethrough,
+                { color: theme.Text },
               ]}
             >
               {titleText}
@@ -106,15 +118,58 @@ export default function ExerciseCard({
 
         {/* Cabeçalho da tabela */}
         <View style={styles.tableHeader}>
-          <Text style={styles.headerText}>Séries</Text>
-          <Text style={styles.headerText}>Repetições</Text>
-          <Text style={styles.headerText}>Carga(kg)</Text>
-          <Text style={styles.headerText}>Status</Text>
+          <Text
+            style={[
+              styles.headerText,
+              themeName === "contrast" && { color: theme.Text },
+            ]}
+          >
+            Séries
+          </Text>
+          <Text
+            style={[
+              styles.headerText,
+              themeName === "contrast" && { color: theme.Text },
+            ]}
+          >
+            Repetições
+          </Text>
+          <Text
+            style={[
+              styles.headerText,
+              themeName === "contrast" && { color: theme.Text },
+            ]}
+          >
+            Carga(kg)
+          </Text>
+          <Text
+            style={[
+              styles.headerText,
+              themeName === "contrast" && { color: theme.Text },
+            ]}
+          >
+            Status
+          </Text>
         </View>
 
         {/* Séries */}
         {Array.from({ length: initialSeries }).map((_, idx) => (
-          <View key={idx} style={styles.tableRow}>
+          <View
+            key={idx}
+            style={[
+              styles.tableRow,
+              themeName === "contrast"
+                ? {
+                    backgroundColor: theme.cardBackground,
+                    borderColor: theme.Border,
+                    borderWidth: 2,
+                    borderRadius: 12,
+                  }
+                : {
+                    backgroundColor: "#f3f2f4",
+                  },
+            ]}
+          >
             <View>
               {checkedSeries[idx] ? (
                 <View style={[styles.seriesBadge, styles.seriesBadgeDone]}>
@@ -136,9 +191,11 @@ export default function ExerciseCard({
               )}
             </View>
 
-            <Text style={styles.repText}>{exercise?.repeticoes ?? "—"}</Text>
+            <Text style={[styles.repText, { color: theme.Text }]}>
+              {exercise?.repeticoes ?? "—"}
+            </Text>
 
-            <Text style={{ textAlign: "center" }}>X</Text>
+            <Text style={[{ textAlign: "center", color: theme.Text }]}>X</Text>
 
             <TextInput
               mode="outlined"
@@ -184,7 +241,11 @@ export default function ExerciseCard({
           <TextInput
             mode="outlined"
             label="Descanso (seg)"
-            style={styles.bottomInput}
+            style={[
+              styles.bottomInput,
+              { backgroundColor: theme.CardBackground },
+            ]}
+            textColor={theme.Text}
             cursorColor={Colors.Orange[800]}
             activeOutlineColor={Colors.Orange[800]}
             keyboardType="numeric"
@@ -196,7 +257,11 @@ export default function ExerciseCard({
           <TextInput
             mode="outlined"
             label="Peso máximo (kg)"
-            style={styles.bottomInput}
+            style={[
+              styles.bottomInput,
+              { backgroundColor: theme.CardBackground },
+            ]}
+            textColor={theme.Text}
             cursorColor={Colors.Orange[800]}
             activeOutlineColor={Colors.Orange[800]}
             keyboardType="numeric"
@@ -242,13 +307,17 @@ export default function ExerciseCard({
         {/* Slider */}
         <Card style={styles.sliderCard} mode="contained">
           <LinearGradient
-            colors={["#FEEBD6", "#FBD2AD"]}
+            colors={
+              themeName === "light"
+                ? ["#FEEBD6", "#FBD2AD"]
+                : [theme.Background, theme.Background]
+            }
             style={{ padding: 12, borderRadius: 10 }}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
           >
             <View style={styles.sliderHeader}>
-              <Text>Amplitude do movimento</Text>
+              <Text style={{ color: theme.Text }}>Amplitude do movimento</Text>
               <View style={styles.sliderTag}>
                 <Text variant="labelSmall">
                   {amplitude < 50
@@ -273,8 +342,8 @@ export default function ExerciseCard({
             />
 
             <View style={styles.sliderLabels}>
-              <Text>Limitada</Text>
-              <Text>Completa</Text>
+              <Text style={{ color: theme.Text }}>Limitada</Text>
+              <Text style={{ color: theme.Text }}>Completa</Text>
             </View>
           </LinearGradient>
         </Card>
@@ -286,10 +355,8 @@ export default function ExerciseCard({
 const styles = StyleSheet.create({
   card: {
     marginTop: 16,
-    backgroundColor: "white",
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: Colors.Orange[700],
     padding: 8,
   },
   cardDone: {
@@ -297,7 +364,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: Colors.Green,
     padding: 8,
   },
   exerciseHeader: {
@@ -323,7 +389,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: 10,
-    backgroundColor: "#f3f2f4",
     borderRadius: 10,
   },
   seriesBadge: {

@@ -4,12 +4,18 @@ import Tag from "@shared/components/Tag";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function Training({ item }) {
   const navigation = useNavigation();
+  const { theme } = useTheme();
+
   return (
     <Card
-      style={styles.todayCard}
+      style={[
+        styles.todayCard,
+        { borderColor: theme.Border, backgroundColor: theme.CardBackground },
+      ]}
       mode="contained"
       onPress={() => navigation.push("TrainingProgress", { id: item.id })}
     >
@@ -40,18 +46,22 @@ export default function Training({ item }) {
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
-            <Text variant="titleLarge">{item.tipo}</Text>
+            <Text style={{ color: theme.Text }} variant="titleLarge">
+              {item.tipo}
+            </Text>
             <Tag type={item.intensity.toLowerCase()} label={item.intensity} />
           </View>
           <View style={styles.exerciseList}>
             <View style={styles.exerciseList}>
               <View style={{ flexDirection: "row", gap: 12 }}>
-                <Text>▸ {item.muscles[0]}</Text>
-                <Text>▸ {item.muscles[1]}</Text>
+                <Text style={{ color: theme.Text }}>▸ {item.muscles[0]}</Text>
+                <Text style={{ color: theme.Text }}>▸ {item.muscles[1]}</Text>
               </View>
               <View style={{ flexDirection: "row", gap: 12 }}>
-                <Text>▸ {item.muscles[2]}</Text>
-                <Text>{item.muscles[3] && `▸ ${item.muscles[3]}`}</Text>
+                <Text style={{ color: theme.Text }}>▸ {item.muscles[2]}</Text>
+                <Text style={{ color: theme.Text }}>
+                  {item.muscles[3] && `▸ ${item.muscles[3]}`}
+                </Text>
               </View>
             </View>
           </View>
@@ -71,8 +81,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: Colors.Orange[900],
-    backgroundColor: "white",
   },
   todayHeader: {
     flexDirection: "row",

@@ -1,17 +1,25 @@
 import Tag from "@shared/components/Tag";
-import Colors from "@consts/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
+import { useTheme } from "@contexts/ThemeContext";
 
 // TODO: Tirar o texto hardcoded e receber via props
 export default function TodayTraining() {
+  const { theme } = useTheme();
+
   return (
-    <Card style={styles.todayCard} mode="contained">
+    <Card
+      style={[
+        styles.todayCard,
+        { borderColor: theme.Border, backgroundColor: theme.Background },
+      ]}
+      mode="contained"
+    >
       <View style={styles.todayHeader}>
         <View style={styles.avatar}>
           <LinearGradient
-            colors={[Colors.Orange[600], Colors.Orange[900]]}
+            colors={[theme.Orange[600], theme.Orange[900]]}
             style={{
               width: "100%",
               height: "100%",
@@ -35,17 +43,19 @@ export default function TodayTraining() {
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
-            <Text variant="titleLarge">Superiores</Text>
+            <Text style={{ color: theme.Text }} variant="titleLarge">
+              Superiores
+            </Text>
             <Tag type="moderado" label="Moderado" />
           </View>
           <View style={styles.exerciseList}>
             <View style={{ flexDirection: "row", gap: 12 }}>
-              <Text>▸ Abdômen</Text>
-              <Text>▸ Antebraço</Text>
+              <Text style={{ color: theme.Text }}>▸ Abdômen</Text>
+              <Text style={{ color: theme.Text }}>▸ Antebraço</Text>
             </View>
             <View style={{ flexDirection: "row", gap: 12 }}>
-              <Text>▸ Bíceps</Text>
-              <Text>▸ Costa</Text>
+              <Text style={{ color: theme.Text }}>▸ Bíceps</Text>
+              <Text style={{ color: theme.Text }}>▸ Costa</Text>
             </View>
           </View>
         </View>
@@ -64,8 +74,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: Colors.Orange[900],
-    backgroundColor: "white",
   },
   todayHeader: {
     flexDirection: "row",

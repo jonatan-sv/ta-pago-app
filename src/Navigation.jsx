@@ -28,10 +28,12 @@ import Register from "@feats/auth/register/screens/RegisterScreen.jsx";
 */
 import ProfileScreen from "@feats/profile/screens/ProfileScreen.jsx";
 import RouteItem from "@shared/RouteItem";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function Navigation() {
   const [index, setIndex] = useState(2);
   const Stack = createNativeStackNavigator();
+  const { theme } = useTheme();
 
   const [routes] = useState([
     RouteItem("training", "Treino", msExerciseFill, msExercise),
@@ -106,7 +108,7 @@ export default function Navigation() {
         onIndexChange={setIndex}
         renderScene={renderScene}
         shifting={false}
-        barStyle={{ backgroundColor: Colors.Orange[700] }}
+        barStyle={{ backgroundColor: theme.Frame }}
         activeColor="white"
         inactiveColor="white"
         activeIndicatorStyle={{ backgroundColor: Colors.Orange[600] }}

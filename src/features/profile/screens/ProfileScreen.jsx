@@ -1,14 +1,19 @@
 import AppFrame from "@shared/components/AppFrame";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function ProfileScreen() {
+  const { theme } = useTheme();
+
   return (
     <AppFrame>
       <View style={styles.container}>
-
         {/* Título */}
-        <Text variant="headlineMedium" style={styles.title}>
+        <Text
+          variant="headlineMedium"
+          style={[styles.title, { color: theme.Text }]}
+        >
           Perfil
         </Text>
 
@@ -17,128 +22,139 @@ export default function ProfileScreen() {
           <View style={styles.avatar}>
             <Text style={styles.avatarIcon}>👤</Text>
           </View>
-          <Text style={styles.name}>Viviane</Text>
-          <Text style={styles.email}>viviane@gmail.com</Text>
+          <Text style={[styles.name, { color: theme.Text }]}>Viviane</Text>
+          <Text style={[styles.email, { color: theme.Text }]}>
+            viviane@gmail.com
+          </Text>
         </View>
 
         {/* Informações rápidas */}
         <View style={styles.infoRow}>
           <View style={styles.infoItem}>
-            <Text style={styles.infoValue}>85 Kg</Text>
-            <Text style={styles.infoLabel}>Peso</Text>
+            <Text style={[styles.infoValue, { color: theme.Text }]}>85 Kg</Text>
+            <Text style={[styles.infoLabel, { color: theme.Text }]}>Peso</Text>
           </View>
 
           <View style={styles.infoItem}>
-            <Text style={styles.infoValue}>26</Text>
-            <Text style={styles.infoLabel}>Idade</Text>
+            <Text style={[styles.infoValue, { color: theme.Text }]}>26</Text>
+            <Text style={[styles.infoLabel, { color: theme.Text }]}>Idade</Text>
           </View>
 
           <View style={styles.infoItem}>
-            <Text style={styles.infoValue}>1.65</Text>
-            <Text style={styles.infoLabel}>Altura</Text>
+            <Text style={[styles.infoValue, { color: theme.Text }]}>1.65</Text>
+            <Text style={[styles.infoLabel, { color: theme.Text }]}>
+              Altura
+            </Text>
           </View>
         </View>
 
         {/* Medidas corporais */}
-        <Text style={styles.sectionTitle}>Medidas corporais</Text>
+        <Text style={[styles.sectionTitle, { color: theme.Text }]}>
+          Medidas corporais
+        </Text>
 
         <View style={styles.row}>
-          <Text>Peito</Text>
-          <Text>98 cm</Text>
+          <Text style={{ color: theme.Text }}>Peito</Text>
+          <Text style={{ color: theme.Text }}>98 cm</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Cintura</Text>
-          <Text>76 cm</Text>
+          <Text style={{ color: theme.Text }}>Cintura</Text>
+          <Text style={{ color: theme.Text }}>76 cm</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Quadril</Text>
-          <Text>104 cm</Text>
+          <Text style={{ color: theme.Text }}>Quadril</Text>
+          <Text style={{ color: theme.Text }}>104 cm</Text>
         </View>
 
         {/* Hábitos de treino */}
-        <Text style={styles.sectionTitle}>Hábitos de Treino</Text>
+        <Text style={[styles.sectionTitle, { color: theme.Text }]}>
+          Hábitos de Treino
+        </Text>
 
         <View style={styles.row}>
-          <Text>Peito</Text>
+          <Text style={{ color: theme.Text }}>Peito</Text>
           <Text style={styles.done}>Concluído</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Cintura</Text>
+          <Text style={{ color: theme.Text }}>Cintura</Text>
           <Text style={styles.done}>Concluído</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Quadríceps</Text>
+          <Text style={{ color: theme.Text }}>Quadríceps</Text>
           <Text style={styles.pending}>Incompleto</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Quadril</Text>
+          <Text style={{ color: theme.Text }}>Quadril</Text>
           <Text style={styles.done}>Concluído</Text>
         </View>
 
         {/* Configurações */}
-        <Text style={styles.sectionTitle}>Configurações da Conta</Text>
+        <Text style={[styles.sectionTitle, { color: theme.Text }]}>
+          Configurações da Conta
+        </Text>
 
         <View style={styles.row}>
-          <Text>Editar informações</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Editar informações</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Notificações</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Notificações</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Permissões</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Permissões</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         {/* Comunidade */}
-        <Text style={styles.sectionTitle}>Comunidade</Text>
+        <Text style={[styles.sectionTitle, { color: theme.Text }]}>
+          Comunidade
+        </Text>
 
         <View style={styles.row}>
-          <Text>Siga-nos no Instagram</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Siga-nos no Instagram</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Avalie nosso aplicativo</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Avalie nosso aplicativo</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Compartilhar com amigos</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Compartilhar com amigos</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         {/* Outros */}
-        <Text style={styles.sectionTitle}>Outros</Text>
+        <Text style={[styles.sectionTitle, { color: theme.Text }]}>Outros</Text>
 
         <View style={styles.row}>
-          <Text>Enviar feedback</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Enviar feedback</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Sobre o app</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Sobre o app</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         <View style={styles.row}>
-          <Text>Exportar dados</Text>
-          <Text>›</Text>
+          <Text style={{ color: theme.Text }}>Exportar dados</Text>
+          <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
         {/* Rodapé */}
-        <Text style={styles.footer}>
+        <Text style={[styles.footer, { color: theme.Text }]}>
           Termos de Uso · Política de Privacidade
         </Text>
-
       </View>
     </AppFrame>
   );

@@ -2,8 +2,11 @@ import { msModeHeatFill } from "@material-symbols-react-native/outlined-400";
 import { MsIcon } from "material-symbols-react-native";
 import { Text, View } from "react-native";
 import Colors from "@consts/Colors";
+import { useTheme } from "@contexts/ThemeContext";
 
 export default function StreakTag({ label, side = "right" }) {
+  const { theme } = useTheme();
+
   return (
     <View
       style={{
@@ -11,7 +14,7 @@ export default function StreakTag({ label, side = "right" }) {
         alignItems: "center",
         justifyContent: "center",
         gap: 7,
-        backgroundColor: "white",
+        backgroundColor: theme.StreakTag,
         padding: 8,
         borderRadius: 8,
       }}
@@ -21,7 +24,7 @@ export default function StreakTag({ label, side = "right" }) {
       <Text
         variant="labelMedium"
         style={{
-          color: Colors.Blue[700],
+          color: theme.Text,
           fontWeight: "bold",
           justifyContent: "center",
         }}

@@ -7,12 +7,19 @@ import { LinearGradient } from "expo-linear-gradient";
 import { MsIcon } from "material-symbols-react-native";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
-
+import { useTheme } from "@contexts/ThemeContext";
 import Tag from "@shared/components/Tag";
 
 export default function Trainings({ item }) {
+  const { theme } = useTheme();
   return (
-    <Card style={styles.historyCard} mode="contained">
+    <Card
+      style={[
+        styles.historyCard,
+        { borderColor: theme.Border, backgroundColor: theme.CardBackground },
+      ]}
+      mode="contained"
+    >
       <View style={styles.historyHeader}>
         <View style={styles.avatar}>
           <LinearGradient
@@ -50,16 +57,20 @@ export default function Trainings({ item }) {
               gap: 30,
             }}
           >
-            <Text variant="titleMedium">{item.tipo}</Text>
+            <Text style={{ color: theme.Text }} variant="titleMedium">
+              {item.tipo}
+            </Text>
             <Tag type={item.tag} label={item.label}></Tag>
           </View>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <MsIcon
               icon={msCalendarToday}
-              color={Colors.Blue[700]}
+              color={theme.Text}
               size={14}
             ></MsIcon>
-            <Text style={styles.historyDate}>{item.data}</Text>
+            <Text style={[styles.historyDate, { color: theme.Text }]}>
+              {item.data}
+            </Text>
           </View>
         </View>
       </View>
@@ -81,8 +92,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: Colors.Orange[900],
-    backgroundColor: "white",
   },
   historyHeader: {
     flexDirection: "row",
