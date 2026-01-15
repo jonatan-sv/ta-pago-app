@@ -14,7 +14,7 @@ import { useTheme } from "@contexts/ThemeContext";
 
 export default function HomeScreen() {
   const { setIndex } = useContext(NavigationContext);
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   // Dados temporários
   const weekInfo = new WeekInfo("Novembro", 2025, 11, 12, 365, [
@@ -89,13 +89,6 @@ export default function HomeScreen() {
           icon={() => <MsIcon icon={msAlarmFill} color="white" size={24} />}
           label="Treinar"
           onPress={() => setIndex(0)}
-        ></FAB>
-        <FAB
-          style={{ backgroundColor: theme.Orange[700] }}
-          color="white"
-          icon={() => <MsIcon icon={msAlarmFill} color="white" size={24} />}
-          label="Tema"
-          onPress={toggleTheme}
         ></FAB>
       </View>
     </View>

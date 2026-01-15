@@ -7,10 +7,11 @@ import {
 } from "react-native-paper";
 import Navigation from "./Navigation";
 import { useEffect, useState } from "react";
-import RegisterScreen from "./features/auth/register/screens/RegisterScreen";
-import { getLocalAccount } from "./features/auth/account.model";
+import { getLocalAccount } from "@feats/auth/account.model";
+import { onLogout } from "@feats/auth/authEvents";
 import { View } from "react-native";
 import { ThemeProvider } from "@contexts/ThemeContext";
+import AuthNavigator from "./AuthNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,13 @@ export default function App() {
       const acc = await getLocalAccount();
       setHasAccount(!!acc);
     })();
+  }, []);
+
+  useEffect(() => {
+    const unsub = onLogout(() => {
+      setHasAccount(false);
+    });
+    return unsub;
   }, []);
 
   if (hasAccount === null) {
@@ -48,11 +56,11 @@ export default function App() {
                 options={{ headerShown: false }}
               />
             ) : (
-              <Stack.Screen name="Register" options={{ headerShown: false }}>
+              <Stack.Screen name="Auth" options={{ headerShown: false }}>
                 {(props) => (
-                  <RegisterScreen
+                  <AuthNavigator
                     {...props}
-                    onRegistered={() => setHasAccount(true)}
+                    onAuthenticated={() => setHasAccount(true)}
                   />
                 )}
               </Stack.Screen>

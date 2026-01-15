@@ -1,10 +1,21 @@
 import AppFrame from "@shared/components/AppFrame";
-import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
+import { StyleSheet, View, Pressable, Alert } from "react-native";
+import { Text, Switch } from "react-native-paper";
 import { useTheme } from "@contexts/ThemeContext";
+import { removeLocalAccount } from "@feats/auth/account.model";
+import { triggerLogout } from "@feats/auth/authEvents";
 
 export default function ProfileScreen() {
-  const { theme } = useTheme();
+  const { theme, themeName, toggleTheme } = useTheme();
+
+  const handleSignOut = async () => {
+    const ok = await removeLocalAccount();
+    if (ok) {
+      triggerLogout();
+    } else {
+      Alert.alert("Erro", "Não foi possível sair da conta");
+    }
+  };
 
   return (
     <AppFrame>
@@ -113,6 +124,13 @@ export default function ProfileScreen() {
           <Text style={{ color: theme.Text }}>›</Text>
         </View>
 
+        <Pressable onPress={handleSignOut}>
+          <View style={styles.row}>
+            <Text style={{ color: theme.Text }}>Sair da Conta</Text>
+            <Text style={{ color: "#E4572E", fontWeight: "bold" }}>›</Text>
+          </View>
+        </Pressable>
+
         {/* Comunidade */}
         <Text style={[styles.sectionTitle, { color: theme.Text }]}>
           Comunidade
@@ -149,6 +167,16 @@ export default function ProfileScreen() {
         <View style={styles.row}>
           <Text style={{ color: theme.Text }}>Exportar dados</Text>
           <Text style={{ color: theme.Text }}>›</Text>
+        </View>
+
+        <View style={[styles.row, { alignItems: "center" }]}>
+          <Text style={{ color: theme.Text }}>Tema de Alto Contraste</Text>
+
+          <Switch
+            value={themeName === "contrast"}
+            onValueChange={toggleTheme}
+            color="#E4572E"
+          />
         </View>
 
         {/* Rodapé */}

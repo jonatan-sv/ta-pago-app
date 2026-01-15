@@ -4,7 +4,7 @@ import { themes } from "@consts/Theme";
 const ThemeContext = createContext({});
 
 export function ThemeProvider({ children }) {
-  const [themeName, setThemeName] = useState("contrast");
+  const [themeName, setThemeName] = useState("light");
 
   const toggleTheme = () => {
     setThemeName((prev) => (prev === "light" ? "contrast" : "light"));

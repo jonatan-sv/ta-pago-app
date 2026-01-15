@@ -5,6 +5,8 @@ import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 import { saveLocalAccount } from "../../account.model";
+import { useTheme } from "@contexts/ThemeContext";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RegisterScreen({ onRegistered }) {
   const [nome, setNome] = useState("");
@@ -12,6 +14,8 @@ export default function RegisterScreen({ onRegistered }) {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState(false);
   const [mostrarSenha, setMostrarSenha] = useState(false);
+  const { theme } = useTheme();
+  const navigation = useNavigation();
 
   const handleRegister = async () => {
     const account = { nome, email };
@@ -32,17 +36,15 @@ export default function RegisterScreen({ onRegistered }) {
         </View>
 
         {/* TÍTULO */}
-        <Text variant="headlineSmall" style={styles.title}>
+        <Text
+          variant="headlineSmall"
+          style={[styles.title, { color: theme.Text }]}
+        >
           Cadastre-se
         </Text>
 
         {/* JÁ POSSUI CONTA */}
-        <TouchableOpacity
-          onPress={() => {
-            // FUTURAMENTE:
-            // navigation.navigate('Login')
-          }}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text variant="titleMedium" style={styles.subtitle}>
             Já possui uma conta?{" "}
             <Text variant="titleMedium" style={styles.link}>
@@ -131,6 +133,7 @@ export default function RegisterScreen({ onRegistered }) {
           disabled
           style={styles.google}
           contentStyle={styles.googleContent}
+          iconColor={theme.Text}
         >
           Continuar com o Google
         </Button>
@@ -157,7 +160,6 @@ const styles = StyleSheet.create({
 
   title: {
     fontWeight: "bold",
-    color: Colors.Blue[700],
     textAlign: "center",
     marginBottom: 6,
   },

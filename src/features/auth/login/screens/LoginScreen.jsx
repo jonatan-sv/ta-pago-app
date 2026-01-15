@@ -4,11 +4,34 @@ import AppFrame from "@shared/components/AppFrame";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { getLocalAccount } from "../../account.model";
+import { useTheme } from "@contexts/ThemeContext";
 
-export default function LoginScreen() {
+export default function LoginScreen({ onLogin }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
+  const navigation = useNavigation();
+  const { theme } = useTheme();
+
+  const handleLogin = async () => {
+    const account = await getLocalAccount();
+
+    if (!account) {
+      console.warn("Nenhuma conta cadastrada");
+      return;
+    }
+
+    if (account.email !== email) {
+      console.warn("Email inválido");
+      return;
+    }
+
+    if (typeof onLogin === "function") {
+      onLogin();
+    }
+  };
 
   return (
     <AppFrame>
@@ -18,16 +41,15 @@ export default function LoginScreen() {
           <Logo />
         </View>
         {/* TÍTULO */}
-        <Text variant="headlineSmall" style={styles.title}>
+        <Text
+          variant="headlineSmall"
+          style={[styles.title, { color: theme.Text }]}
+        >
           Login
         </Text>
 
         {/* CRIAR CONTA */}
-        <TouchableOpacity
-          onPress={() => {
-            // navigation.navigate('Cadastro')
-          }}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
           <Text variant="titleMedium" style={styles.subtitle}>
             Não possui uma conta?{" "}
             <Text variant="titleMedium" style={styles.link}>
@@ -80,7 +102,8 @@ export default function LoginScreen() {
           mode="contained"
           style={styles.button}
           contentStyle={styles.buttonContent}
-          onPress={() => setIndex(2)}
+          onPress={handleLogin}
+          disabled={!email || !senha}
         >
           Entrar
         </Button>
@@ -122,7 +145,6 @@ const styles = StyleSheet.create({
 
   title: {
     fontWeight: "bold",
-    color: Colors.Blue[700],
     textAlign: "center",
     marginBottom: 6,
   },
